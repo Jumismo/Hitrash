@@ -1,5 +1,6 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
@@ -42,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         confirm.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
                 if (username.getText().toString() != "" && password.getText().toString() != "") {
                     RequestParams rp = new RequestParams();
@@ -54,8 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             // If the response is JSONObject instead of expected JSONArray
                             try {
-                                JSONObject serverResp = new JSONObject(response.toString());
-                                Map<String, String> data = (Map<String, String>) serverResp.get("data");
+                                JSONObject data =  (JSONObject) response.get("data");
                                 userLogged = new User();
                                 userLogged.parseFromJSON(data);
 
@@ -66,6 +68,15 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putBoolean("IsAdmin", userLogged.getAdmin());
                                     // Commit the edits!
                                     editor.commit();
+
+                                    if(userLogged.getAdmin()){
+                                        Intent intent = new Intent(v.getContext(), PrincipalAdminActivity.class);
+                                        startActivity(intent);
+
+                                    }else {
+                                        Intent intent = new Intent(v.getContext(), PrincipalUserActivity.class);
+                                        startActivity(intent);
+                                    }
                                 }
 
                             } catch (JSONException e) {

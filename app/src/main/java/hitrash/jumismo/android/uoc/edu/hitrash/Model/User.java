@@ -1,5 +1,6 @@
 package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
@@ -65,13 +66,18 @@ public class User {
         isAdmin = admin;
     }
 
-    public void parseFromJSON(Map<String, String> data)
+    public void parseFromJSON(JSONObject data)
     {
-        this.id = data.get("_id");
-        this.name = data.get("name");
-        this.password = data.get("password");
-        this.email = data.get("email");
-        this.isAdmin = Boolean.parseBoolean(data.get("isAdmin"));
+        try {
+            this.id = data.getString("_id");
+            this.name = data.getString("name");
+            this.password = data.getString("password");
+            this.email = data.getString("email");
+            this.isAdmin = Boolean.parseBoolean(data.getString("isAdmin"));
+        }catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 }
