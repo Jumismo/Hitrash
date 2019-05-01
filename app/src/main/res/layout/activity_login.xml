@@ -69,6 +69,7 @@
         android:inputType="textPassword" />
 
     <ImageButton
+        android:id="@+id/confirm"
         android:layout_width="60dp"
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
