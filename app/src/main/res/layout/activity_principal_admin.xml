@@ -58,6 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logoPrincipalAdmin" />
 
     <Button
+        android:id="@+id/buttonCleaningClaims"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="8dp"

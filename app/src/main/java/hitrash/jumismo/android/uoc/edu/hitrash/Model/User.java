@@ -3,6 +3,8 @@ package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class User {
@@ -12,6 +14,10 @@ public class User {
     private String password;
     private String email;
     private Boolean isAdmin;
+    private Boolean isActive;
+    private List<HikingTrail> hikingTrails = new ArrayList<HikingTrail>();
+    private List<Comment> comments = new ArrayList<Comment>();
+    private List<Group> groups = new ArrayList<Group>();
 
     public User()
     {
@@ -66,6 +72,10 @@ public class User {
         isAdmin = admin;
     }
 
+    public Boolean getIsActive() { return isActive; }
+
+    public void setIsActive(Boolean isActive){ this.isActive = isActive;}
+
     public void parseFromJSON(JSONObject data)
     {
         try {
@@ -74,10 +84,10 @@ public class User {
             this.password = data.getString("password");
             this.email = data.getString("email");
             this.isAdmin = Boolean.parseBoolean(data.getString("isAdmin"));
+            this.isActive = Boolean.parseBoolean(data.getString("isActive"));
         }catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 }

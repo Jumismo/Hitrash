@@ -20,6 +20,11 @@ public class HttpUtils {
         client.post(getAbsoluteUrl(url), params, responseHandler);
     }
 
+    public static void put(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        Log.d("Url", getAbsoluteUrl(url));
+        client.put(getAbsoluteUrl(url), params, responseHandler);
+    }
+
     public static void getByUrl(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         client.get(url, params, responseHandler);
     }

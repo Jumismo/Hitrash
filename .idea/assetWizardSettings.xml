@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_exit_to_app_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/content/ic_content_paste_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -44,7 +44,7 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_exit" />
+                                      <entry key="outputName" value="ic_claim" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -71,10 +71,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="foregroundImage" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Logo.png" />
-                                      <entry key="legacyIconShape" value="NONE" />
                                       <entry key="outputName" value="ic_logo" />
-                                      <entry key="previewDensity" value="XXXHIGH" />
-                                      <entry key="webIconShape" value="NONE" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -86,7 +83,6 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="iconShape" value="NONE" />
                                       <entry key="imageAsset" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Logo.png" />
                                       <entry key="outputName" value="ic_logo" />
                                     </map>

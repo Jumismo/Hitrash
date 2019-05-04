@@ -21,7 +21,10 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".PrincipalUserActivity" />
-        <activity android:name=".PrincipalAdminActivity"></activity>
+        <activity android:name=".PrincipalAdminActivity" />
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".ManagerHikingTrailActivity" />
+        <activity android:name=".CleaningClaimsActivity"></activity>
     </application>
 
 </manifest>
