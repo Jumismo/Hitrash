@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,19 +14,17 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
-import hitrash.jumismo.android.uoc.edu.hitrash.Utils.HttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAdapter.ViewHolder> {
 
     public List<User> userList;
-    public int currentPosition;
 
     public UserListArrayAdapter(List<User> userList) {
         this.userList = userList;
@@ -43,7 +40,6 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
     @Override
     public void onBindViewHolder(@NonNull UserListArrayAdapter.ViewHolder viewHolder, int i) {
         User user = userList.get(i);
-        currentPosition = i;
         viewHolder.user = user;
         viewHolder.name.setText(userList.get(i).getName());
 
@@ -84,14 +80,14 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
                     rp.add("isActive", "true");
 
 
-                    HttpUtils.put(Constants.URI_UPDATE_USER + user.getId(), rp, new JsonHttpResponseHandler(){
+                    AsyncHttpUtils.put(Constants.URI_UPDATE_USER + user.getId(), rp, new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             try {
                                 JSONObject data = (JSONObject) response.get("data");
                                 User userUpdated = new User();
                                 userUpdated.parseFromJSON(data);
-                                userList.set(currentPosition, userUpdated);
+                                userList.set(userList.indexOf(user), userUpdated);
 
                                 if(!userUpdated.getIsActive().equals(true)){
                                     Toast.makeText(v.getContext(), "No se ha actualizado el usuario", Toast.LENGTH_SHORT);
@@ -119,14 +115,14 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
                     RequestParams rp = new RequestParams();
                     rp.add("isActive", "false");
 
-                    HttpUtils.put(Constants.URI_UPDATE_USER + user.getId(), rp, new JsonHttpResponseHandler(){
+                    AsyncHttpUtils.put(Constants.URI_UPDATE_USER + user.getId(), rp, new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             try {
                                 JSONObject data = (JSONObject) response.get("data");
                                 User userUpdated = new User();
                                 userUpdated.parseFromJSON(data);
-                                userList.set(currentPosition, userUpdated);
+                                userList.set(userList.indexOf(user), userUpdated);
 
                                 if(!userUpdated.getIsActive().equals(false)){
                                     Toast.makeText(v.getContext(), "No se ha actualizado el usuario", Toast.LENGTH_SHORT);

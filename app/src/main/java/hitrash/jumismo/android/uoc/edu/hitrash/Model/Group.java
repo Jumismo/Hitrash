@@ -1,11 +1,25 @@
 package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+
 public class Group {
 
+    private String id;
     private String name;
     private String description;
     private String location;
@@ -19,7 +33,8 @@ public class Group {
     public Group() {
     }
 
-    public Group(String name, String description, String location, Date date, Boolean isActive, Boolean isCleaningGroup, HikingTrail hikingTrail, List<User> users) {
+    public Group(String id, String name, String description, String location, Date date, Boolean isActive, Boolean isCleaningGroup, HikingTrail hikingTrail, List<User> users) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.location = location;
@@ -28,6 +43,14 @@ public class Group {
         this.isCleaningGroup = isCleaningGroup;
         this.hikingTrail = hikingTrail;
         this.users = users;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -100,5 +123,35 @@ public class Group {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public void parseFromJSON(JSONObject jsonObject) {
+        try {
+            this.id = jsonObject.getString("_id");
+            this.name = jsonObject.getString("name");
+            this.description = jsonObject.getString("description");
+            this.location = jsonObject.getString("location");
+            SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            this.date = formatter.parse(jsonObject.getString("date"));
+            this.isActive = Boolean.parseBoolean(jsonObject.getString("isActive"));
+            this.isCleaningGroup = Boolean.parseBoolean(jsonObject.getString("isCleaningGroup"));
+            HikingTrail hikingTrail = new HikingTrail();
+            hikingTrail.parseFromJSON(jsonObject.getJSONObject("hikingTrail"));
+            this.hikingTrail = hikingTrail;
+            JSONArray usersJSON = jsonObject.getJSONArray("users");
+            int size = usersJSON.length();
+
+            for(int i =0; i < size; i++) {
+                User user = new User();
+                user.parseFromJSON(usersJSON.getJSONObject(i));
+                this.users.add(user);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 }

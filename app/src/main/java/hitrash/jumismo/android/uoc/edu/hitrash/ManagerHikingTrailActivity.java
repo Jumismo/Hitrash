@@ -18,7 +18,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
-import hitrash.jumismo.android.uoc.edu.hitrash.Utils.HttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 public class ManagerHikingTrailActivity extends AppCompatActivity {
 
@@ -40,7 +40,7 @@ public class ManagerHikingTrailActivity extends AppCompatActivity {
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
 
-        HttpUtils.get(Constants.URI_HIKING_TRAILS, null, new JsonHttpResponseHandler(){
+        AsyncHttpUtils.get(Constants.URI_HIKING_TRAILS, null, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("Get Hiking Trails", "Hiking Trails got");

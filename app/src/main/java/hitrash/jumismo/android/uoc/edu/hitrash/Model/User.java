@@ -1,11 +1,17 @@
 package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+
+import cz.msebera.android.httpclient.Header;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 public class User {
 

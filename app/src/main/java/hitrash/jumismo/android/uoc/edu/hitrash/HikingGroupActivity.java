@@ -1,10 +1,10 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -16,13 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
-import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
+import hitrash.jumismo.android.uoc.edu.hitrash.Model.Group;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
-public class CleaningClaimsActivity extends AppCompatActivity {
+public class HikingGroupActivity extends AppCompatActivity {
 
-    private List<HikingTrail> hikingTrailsWithClaimsList;
+    private List<Group> userGroupList;
     private RecyclerView recycler;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
@@ -30,32 +30,33 @@ public class CleaningClaimsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cleaning_claims);
+        setContentView(R.layout.activity_hiking_group);
 
-        hikingTrailsWithClaimsList = new ArrayList<HikingTrail>();
+        userGroupList = new ArrayList<Group>();
 
-        recycler = (RecyclerView) findViewById(R.id.cleaning_claims_recycler_view);
+        recycler = (RecyclerView) findViewById(R.id.user_group_list_recycler_view);
         recycler.setHasFixedSize(true);
 
         lManager = new LinearLayoutManager(this);
         recycler.setLayoutManager(lManager);
 
-        AsyncHttpUtils.get(Constants.URI_CLEANING_CLAIMS, null, new JsonHttpResponseHandler(){
-
+        AsyncHttpUtils.get(Constants.URI_USER_GROUPS, null, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("Get Claims", "Claims got");
                 try {
                     JSONArray data =  (JSONArray) response.get("data");
                     int size = data.length();
 
                     for(int i = 0; i < size; i++){
-                        HikingTrail hikingTrail = new HikingTrail();
-                        hikingTrail.parseFromJSON(data.getJSONObject(i));
-                        hikingTrailsWithClaimsList.add(hikingTrail);
+                        Group userGroup = new Group();
+                        userGroup.parseFromJSON(data.getJSONObject(i));
+                        userGroupList.add(userGroup);
                     }
 
-                    adapter = new CleaningClaimsArrayAdapter(hikingTrailsWithClaimsList);
+                    Intent intent = getIntent();
+                    String id = intent.getStringExtra("id_user");
+
+                    adapter = new HikingGroupArrayAdapter(userGroupList, id);
                     recycler.setAdapter(adapter);
 
                 }
@@ -64,13 +65,6 @@ public class CleaningClaimsActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                Log.d("Get Users", "Entra en array");
-            }
         });
-
-
     }
 }

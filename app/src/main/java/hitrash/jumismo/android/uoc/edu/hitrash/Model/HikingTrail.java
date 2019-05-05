@@ -1,7 +1,9 @@
 package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 
-import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

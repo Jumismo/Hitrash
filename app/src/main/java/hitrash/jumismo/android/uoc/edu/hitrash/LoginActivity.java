@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -16,15 +15,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import cz.msebera.android.httpclient.Header;
 
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
-import hitrash.jumismo.android.uoc.edu.hitrash.Utils.HttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                     rp.add("name", username.getText().toString());
                     rp.add("password", password.getText().toString());
 
-                    HttpUtils.post(Constants.URI_AUTHENTICATION, rp, new JsonHttpResponseHandler() {
+                    AsyncHttpUtils.post(Constants.URI_AUTHENTICATION, rp, new JsonHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             // If the response is JSONObject instead of expected JSONArray

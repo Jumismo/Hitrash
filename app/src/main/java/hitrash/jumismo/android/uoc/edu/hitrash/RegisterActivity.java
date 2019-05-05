@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -19,7 +18,7 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
-import hitrash.jumismo.android.uoc.edu.hitrash.Utils.HttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -47,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                     rp.add("password", password.getText().toString());
                     rp.add("email", email.getText().toString());
 
-                    HttpUtils.post(Constants.URI_NEW_USER, rp, new JsonHttpResponseHandler() {
+                    AsyncHttpUtils.post(Constants.URI_NEW_USER, rp, new JsonHttpResponseHandler() {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             try {

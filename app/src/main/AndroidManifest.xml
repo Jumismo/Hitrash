@@ -3,6 +3,7 @@
     package="hitrash.jumismo.android.uoc.edu.hitrash">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +25,8 @@
         <activity android:name=".PrincipalAdminActivity" />
         <activity android:name=".UserListActivity" />
         <activity android:name=".ManagerHikingTrailActivity" />
-        <activity android:name=".CleaningClaimsActivity"></activity>
+        <activity android:name=".CleaningClaimsActivity" />
+        <activity android:name=".HikingGroupActivity"></activity>
     </application>
 
 </manifest>

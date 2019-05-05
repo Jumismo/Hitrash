@@ -1,9 +1,7 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +21,7 @@ import java.util.List;
 import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
-import hitrash.jumismo.android.uoc.edu.hitrash.Utils.HttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 
 public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHikingTrailArrayAdapter.ViewHolder> {
 
@@ -122,7 +120,7 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
                     RequestParams rp = new RequestParams();
                     rp.add("isActive", "true");
 
-                    HttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + hikingTrail.getId(), rp, new JsonHttpResponseHandler(){
+                    AsyncHttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + hikingTrail.getId(), rp, new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             try {
@@ -158,7 +156,7 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
                     rp.add("isActive", "false");
 
 
-                    HttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + hikingTrail.getId(), rp, new JsonHttpResponseHandler(){
+                    AsyncHttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + hikingTrail.getId(), rp, new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                             try {
