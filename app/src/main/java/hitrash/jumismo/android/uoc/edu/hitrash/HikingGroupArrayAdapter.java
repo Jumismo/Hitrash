@@ -1,5 +1,6 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
@@ -111,7 +112,12 @@ public class HikingGroupArrayAdapter extends RecyclerView.Adapter<HikingGroupArr
 
                 @Override
                 public void onClick(View v) {
-
+                    if(joinGroup.getVisibility() == View.GONE)
+                    {
+                        Intent intent = new Intent(v.getContext(), ConversationActivity.class);
+                        intent.putExtra("id_group", group.getId());
+                        v.getContext().startActivity(intent);
+                    }
                 }
             });
 

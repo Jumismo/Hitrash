@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,7 +18,7 @@ import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
 
-public class Group {
+public class Group implements Serializable {
 
     private String id;
     private String name;
@@ -139,12 +140,21 @@ public class Group {
             hikingTrail.parseFromJSON(jsonObject.getJSONObject("hikingTrail"));
             this.hikingTrail = hikingTrail;
             JSONArray usersJSON = jsonObject.getJSONArray("users");
-            int size = usersJSON.length();
+            int userSize = usersJSON.length();
 
-            for(int i =0; i < size; i++) {
+            for(int i =0; i < userSize; i++) {
                 User user = new User();
                 user.parseFromJSON(usersJSON.getJSONObject(i));
                 this.users.add(user);
+            }
+
+            JSONArray commentsJSON = jsonObject.getJSONArray("comments");
+            int commentSize = commentsJSON.length();
+
+            for(int i =0; i < commentSize; i++) {
+                Comment comment = new Comment();
+                comment.parseFromJSON(commentsJSON.getJSONObject(i));
+                this.comments.add(comment);
             }
 
         } catch (JSONException e) {
