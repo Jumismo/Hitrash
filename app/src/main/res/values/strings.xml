@@ -11,4 +11,19 @@
     <string name="userList">User List</string>
     <string name="manageHikingTrail">Manage Hiking Trails</string>
     <string name="cleaningClaims">Cleaning Claims</string>
+    <string name="titleHikingTrails">Hiking Trails</string>
+    <string name="nameLabel">Name:</string>
+    <string name="hardnessLabel">Hardness</string>
+    <string name="hardnessType_Prompt">Choose hardness ...</string>
+    <string name="provinceLabel">Province:</string>
+    <string name="distanceLabel">Distance:</string>
+    <string name="signalize">Signalized</string>
+    <string name="informationOffice">Information Office</string>
+    <string name="guide">Guide</string>
+
+    <string-array name="hardnessType">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

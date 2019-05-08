@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewHikingTrailActivity">
+
+    <TextView
+        android:id="@+id/nameHikingTrailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/nameLabel"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nameHikingTrailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nameHikingTrailLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageHardnessHT"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_hardness"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailEditText" />
+
+    <TextView
+        android:id="@+id/hardnessHikingTrailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center_vertical"
+        android:text="@string/hardnessLabel"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageHardnessHT"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailEditText" />
+
+    <Spinner
+        android:id="@+id/hardnessTypeHikingTrailSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:entries="@array/hardnessType"
+        android:prompt="@string/hardnessType_Prompt"
+        app:layout_constraintStart_toEndOf="@+id/hardnessHikingTrailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailEditText" />
+
+    <TextView
+        android:id="@+id/provinceHikingTrailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/provinceLabel"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageHardnessHT" />
+
+    <EditText
+        android:id="@+id/provinceHikingTrailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toEndOf="@+id/provinceHikingTrailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hardnessTypeHikingTrailSpinner" />
+
+    <TextView
+        android:id="@+id/distanceHikingTrailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/distanceLabel"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/provinceHikingTrailLabel" />
+
+    <EditText
+        android:id="@+id/distanceHikingTrailEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@+id/distanceHikingTrailLabel"
+        app:layout_constraintTop_toBottomOf="@+id/provinceHikingTrailEditText" />
+
+    <CheckBox
+        android:id="@+id/signalizeHikingTrailCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/signalize"
+        app:layout_constraintStart_toEndOf="@+id/provinceHikingTrailEditText"
+        app:layout_constraintTop_toBottomOf="@+id/hardnessTypeHikingTrailSpinner" />
+
+    <CheckBox
+        android:id="@+id/informationOfficeHikingTrailCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/informationOffice"
+        app:layout_constraintStart_toEndOf="@+id/distanceHikingTrailEditText"
+        app:layout_constraintTop_toBottomOf="@+id/signalizeHikingTrailCheckbox" />
+
+    <CheckBox
+        android:id="@+id/guideHikingTrailCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/guide"
+        app:layout_constraintStart_toEndOf="@+id/distanceHikingTrailEditText"
+        app:layout_constraintTop_toBottomOf="@+id/informationOfficeHikingTrailCheckbox" />
+
+    <ImageButton
+        android:id="@+id/acceptButtonHikingTrail"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

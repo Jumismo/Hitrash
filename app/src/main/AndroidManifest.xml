@@ -27,7 +27,10 @@
         <activity android:name=".ManagerHikingTrailActivity" />
         <activity android:name=".CleaningClaimsActivity" />
         <activity android:name=".HikingGroupActivity" />
-        <activity android:name=".ConversationActivity"></activity>
+        <activity android:name=".ConversationActivity" />
+        <activity android:name=".CleaningGroupActivity" />
+        <activity android:name=".HikingTrailsActivity" />
+        <activity android:name=".NewHikingTrailActivity"></activity>
     </application>
 
 </manifest>

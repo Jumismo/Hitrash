@@ -23,15 +23,32 @@ public class PrincipalUserActivity extends AppCompatActivity {
         buttonHikingTrails = findViewById(R.id.buttonHikingTrails);
         buttonClean = findViewById(R.id.buttonClean);
 
+        SharedPreferences settings = getSharedPreferences("Preference", 0);
+        final String idUser = settings.getString("IdUser", "");
 
         buttonHikingGroup.setOnClickListener(new Button.OnClickListener(){
 
             @Override
             public void onClick(View v) {
-                SharedPreferences settings = getSharedPreferences("Preference", 0);
-                String idUser = settings.getString("IdUser", "");
-
                 Intent intent = new Intent(v.getContext(), HikingGroupActivity.class);
+                intent.putExtra("id_user", idUser);
+                startActivity(intent);
+            }
+        });
+
+        buttonHikingTrails.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), HikingTrailsActivity.class);
+                intent.putExtra("id_user", idUser);
+                startActivity(intent);
+            }
+        });
+
+        buttonClean.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), CleaningGroupActivity.class);
                 intent.putExtra("id_user", idUser);
                 startActivity(intent);
             }

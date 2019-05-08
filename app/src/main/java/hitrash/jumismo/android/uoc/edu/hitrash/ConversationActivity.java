@@ -119,6 +119,7 @@ public class ConversationActivity extends AppCompatActivity {
                     }
                 });
 
+                insertCommentUserGroup.setText("");
 
             }
         });
