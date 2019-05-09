@@ -77,12 +77,6 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         }
 
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-
-
-                        }
-
                     });
 
                 }

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShowHikingTrailActivity">
+
+    <TextView
+        android:id="@+id/nameHikingTrailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/startRouteButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailLabel" />
+
+    <TextView
+        android:id="@+id/startRouteLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/startRoute"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/startRouteButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailLabel" />
+
+    <ImageButton
+        android:id="@+id/cleaningClaimButton"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ic_cleanig_claim"
+        app:layout_constraintStart_toEndOf="@+id/startRouteLabel"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailLabel" />
+
+    <TextView
+        android:id="@+id/claimLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/claimLabel"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/cleaningClaimButton"
+        app:layout_constraintTop_toBottomOf="@+id/nameHikingTrailLabel" />
+
+    <ImageView
+        android:id="@+id/imageLocation"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startRouteButton" />
+
+    <TextView
+        android:id="@+id/provinceLabel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageLocation"
+        app:layout_constraintTop_toTopOf="@+id/imageLocation" />
+
+    <ImageView
+        android:id="@+id/imageHardness"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_hardness"
+        app:layout_constraintStart_toEndOf="@+id/provinceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/startRouteButton" />
+
+    <TextView
+        android:id="@+id/hardnessLabel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageHardness"
+        app:layout_constraintTop_toTopOf="@+id/imageLocation" />
+
+    <ImageView
+        android:id="@+id/imageDistance"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_distance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
+    <TextView
+        android:id="@+id/distanceLabel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/imageDistance"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
+    <ImageView
+        android:id="@+id/imageSignalize"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_signalize"
+        app:layout_constraintStart_toEndOf="@+id/distanceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
+    <ImageView
+        android:id="@+id/imageInformationOffice"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_information_office"
+        app:layout_constraintStart_toEndOf="@+id/imageSignalize"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
+    <ImageView
+        android:id="@+id/imageGuide"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_guide"
+        app:layout_constraintStart_toEndOf="@+id/imageInformationOffice"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
+    <ImageButton
+        android:id="@+id/imageUserGroupButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_goup"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageCleaningGroupButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_clean"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

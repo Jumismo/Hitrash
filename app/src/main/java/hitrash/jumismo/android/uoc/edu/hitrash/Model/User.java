@@ -17,6 +17,7 @@ public class User {
 
     private String id;
     private String name;
+    private String lastname;
     private String password;
     private String email;
     private Boolean isAdmin;
@@ -52,6 +53,22 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
     }
 
     public String getPassword() {

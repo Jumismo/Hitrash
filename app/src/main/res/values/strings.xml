@@ -20,10 +20,18 @@
     <string name="signalize">Signalized</string>
     <string name="informationOffice">Information Office</string>
     <string name="guide">Guide</string>
+    <string name="startRoute">Start Route</string>
+    <string name="claimLabel">Claim</string>
+    <string name="groupNameLabel">Group Name:</string>
+    <string name="groupDescriptionLabel">Description:</string>
 
     <string-array name="hardnessType">
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="calendar_date_picker_result_values">%1$s/%2$s/%3$s</string>
+    <string name="time_picker_result_value">%1$s:%2$s</string>
 </resources>

@@ -7,13 +7,14 @@ public class Constants {
     public static final String URI_NEW_USER = "users";
     public static final String URI_USERS = "users" ;
     public static final String URI_UPDATE_USER = "users/";
-    public static final String URI_USER = "users/";
+    public static final String URI_ACTIVE_USERS = "activeUsers";
 
     // Hiking Trails urls
     public static final String URI_HIKING_TRAILS = "hikingTrail";
     public static final String URI_NEW_HIKING_TRAILS = "hikingTrail";
     public static final String URI_UPDATE_HIKING_TRAIL = "hikingTrail/";
     public static final String URI_ACTIVE_HIKING_TRAIL = "activeHikingTrails/";
+    public static final String URI_SHOW_HIKING_TRAIL = "hikingTrail/";
 
     // Cleaning claims urls
     public static final String URI_CLEANING_CLAIMS = "cleaningClaims";
@@ -26,4 +27,5 @@ public class Constants {
 
     // Comments urls
     public static final String URI_NEW_COMMENT = "comment";
+
 }

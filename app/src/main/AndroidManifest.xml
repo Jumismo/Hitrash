@@ -30,7 +30,9 @@
         <activity android:name=".ConversationActivity" />
         <activity android:name=".CleaningGroupActivity" />
         <activity android:name=".HikingTrailsActivity" />
-        <activity android:name=".NewHikingTrailActivity"></activity>
+        <activity android:name=".NewHikingTrailActivity" />
+        <activity android:name=".ShowHikingTrailActivity" />
+        <activity android:name=".NewGroupActivity"></activity>
     </application>
 
 </manifest>
