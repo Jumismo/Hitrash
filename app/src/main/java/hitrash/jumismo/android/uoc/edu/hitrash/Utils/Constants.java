@@ -8,6 +8,7 @@ public class Constants {
     public static final String URI_USERS = "users" ;
     public static final String URI_UPDATE_USER = "users/";
     public static final String URI_ACTIVE_USERS = "activeUsers";
+    public static final String URI_USER = "users/";
 
     // Hiking Trails urls
     public static final String URI_HIKING_TRAILS = "hikingTrail";
@@ -24,8 +25,11 @@ public class Constants {
     public static final String URI_UPDATE_USER_GROUP = "group/";
     public static final String URI_USER_GROUP = "group/";
     public static final String URI_CLEANING_GROUP = "cleaningGroup";
+    public static final String URI_NEW_GROUP = "group";
 
     // Comments urls
     public static final String URI_NEW_COMMENT = "comment";
+
+
 
 }

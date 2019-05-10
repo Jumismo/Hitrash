@@ -34,4 +34,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="calendar_date_picker_result_values">%1$s/%2$s/%3$s</string>
     <string name="time_picker_result_value">%1$s:%2$s</string>
+    <string name="newGroupTitle">Create New Group</string>
+    <string name="profile">Profile</string>
 </resources>

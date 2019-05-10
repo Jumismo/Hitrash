@@ -32,7 +32,8 @@
         <activity android:name=".HikingTrailsActivity" />
         <activity android:name=".NewHikingTrailActivity" />
         <activity android:name=".ShowHikingTrailActivity" />
-        <activity android:name=".NewGroupActivity"></activity>
+        <activity android:name=".NewGroupActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ public class PrincipalUserActivity extends AppCompatActivity {
     private Button buttonHikingGroup;
     private Button buttonHikingTrails;
     private Button buttonClean;
+    private Button buttonProfilePrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +23,19 @@ public class PrincipalUserActivity extends AppCompatActivity {
         buttonHikingGroup = findViewById(R.id.buttonHikingGroup);
         buttonHikingTrails = findViewById(R.id.buttonHikingTrails);
         buttonClean = findViewById(R.id.buttonClean);
+        buttonProfilePrincipal = findViewById(R.id.buttonProfilePrincipal);
 
         SharedPreferences settings = getSharedPreferences("Preference", 0);
         final String idUser = settings.getString("IdUser", "");
+
+        buttonProfilePrincipal.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ProfileActivity.class);
+                intent.putExtra("id_user", idUser);
+                startActivity(intent);
+            }
+        });
 
         buttonHikingGroup.setOnClickListener(new Button.OnClickListener(){
 
