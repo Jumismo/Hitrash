@@ -67,6 +67,7 @@ public class Comment {
         this.group = group;
     }
 
+    // Método para parsear un objeto recibido en una petición.
     public void parseFromJSON(JSONObject jsonObject) {
 
         try {
@@ -74,6 +75,12 @@ public class Comment {
             this.comment = jsonObject.getString("comment");
             SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
             this.publicationDate = formatter.parse(jsonObject.getString("publicationDate"));
+
+            if(jsonObject.has("author")) {
+                User user = new User();
+                user.parseFromJSON(jsonObject.getJSONObject("author"));
+                this.author = user;
+            }
 
         } catch (JSONException e) {
             e.printStackTrace();

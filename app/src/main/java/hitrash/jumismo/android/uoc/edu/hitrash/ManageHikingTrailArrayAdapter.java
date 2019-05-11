@@ -26,7 +26,6 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHikingTrailArrayAdapter.ViewHolder> {
 
     public List<HikingTrail> hikingTrailsList;
-    public int currentPosition;
 
     public ManageHikingTrailArrayAdapter(List<HikingTrail> hikingTrailsList)
     {
@@ -43,7 +42,6 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         HikingTrail hikingTrail = hikingTrailsList.get(i);
-        currentPosition = i;
         viewHolder.hikingTrail = hikingTrail;
         viewHolder.name.setText(hikingTrail.getName());
         viewHolder.province.setText(hikingTrail.getProvince());
@@ -127,23 +125,24 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
                                 JSONObject data = (JSONObject) response.get("data");
                                 HikingTrail hikingTrailUpdated = new HikingTrail();
                                 hikingTrailUpdated.parseFromJSON(data);
-                                hikingTrailsList.set(currentPosition, hikingTrailUpdated);
+                                hikingTrailsList.set(hikingTrailsList.indexOf(hikingTrail), hikingTrailUpdated);
 
                                 if(!hikingTrailUpdated.getActive().equals(true)){
-                                    Toast.makeText(v.getContext(), "No se ha actualizado el Hiking Trail", Toast.LENGTH_SHORT);
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.hikingTrailNotUpdated), Toast.LENGTH_SHORT);
                                 }
                                 else{
                                     notifyDataSetChanged();
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.hikingTrailUpdated), Toast.LENGTH_SHORT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                             }
-
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                            Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -155,7 +154,6 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
                     RequestParams rp = new RequestParams();
                     rp.add("isActive", "false");
 
-
                     AsyncHttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + hikingTrail.getId(), rp, new JsonHttpResponseHandler(){
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -163,31 +161,28 @@ public class ManageHikingTrailArrayAdapter extends RecyclerView.Adapter<ManageHi
                                 JSONObject data = (JSONObject) response.get("data");
                                 HikingTrail hikingTrailUpdated = new HikingTrail();
                                 hikingTrailUpdated.parseFromJSON(data);
-                                hikingTrailsList.set(currentPosition, hikingTrailUpdated);
+                                hikingTrailsList.set(hikingTrailsList.indexOf(hikingTrail), hikingTrailUpdated);
 
                                 if(!hikingTrailUpdated.getActive().equals(false)){
-                                    Toast.makeText(v.getContext(), "No se ha actualizado la Hiking Trail", Toast.LENGTH_SHORT);
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.hikingTrailNotUpdated), Toast.LENGTH_SHORT);
                                 }
                                 else{
-
                                     notifyDataSetChanged();
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.hikingTrailUpdated), Toast.LENGTH_SHORT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                             }
-
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                            Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
-
                 }
             });
-
-
         }
     }
 }

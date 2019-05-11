@@ -106,16 +106,28 @@ public class ConversationActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                                     updateComments();
+                                    Toast.makeText(v.getContext(),v.getContext().getString(R.string.commentUpdate), Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                                    Toast.makeText(v.getContext(),v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                                 }
                             });
 
 
                             if(data == null){
-                                Toast.makeText(v.getContext(), "Not insert object", Toast.LENGTH_LONG);
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorInsertObject), Toast.LENGTH_LONG);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(v.getContext(),v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                         }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Toast.makeText(v.getContext(),v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
@@ -125,6 +137,7 @@ public class ConversationActivity extends AppCompatActivity {
         });
     }
 
+    // Método para actualizar la lista de comentarios del array adapter
     public void updateComments(){
         AsyncHttpUtils.get(Constants.URI_USER_GROUP + id_group, null, new JsonHttpResponseHandler(){
 
@@ -145,7 +158,13 @@ public class ConversationActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getApplicationContext(),getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

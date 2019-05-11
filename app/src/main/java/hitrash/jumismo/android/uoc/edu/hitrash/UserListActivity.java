@@ -1,10 +1,12 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -62,12 +64,13 @@ public class UserListActivity extends AppCompatActivity {
                 catch (JSONException e)
                 {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                Log.d("Get Users", "Entra en array");
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

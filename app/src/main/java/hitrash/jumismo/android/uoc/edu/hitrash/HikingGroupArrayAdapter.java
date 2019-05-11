@@ -95,14 +95,21 @@ public class HikingGroupArrayAdapter extends RecyclerView.Adapter<HikingGroupArr
                                 hikingGroupList.set(hikingGroupList.indexOf(group), groupUpdated);
 
                                 if(groupUpdated.getUsers().size()<= userCount){
-                                    Toast.makeText(v.getContext(), "No se ha actualizado el usuario", Toast.LENGTH_SHORT);
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userNotUpdated), Toast.LENGTH_SHORT);
                                 }
                                 else{
                                     notifyDataSetChanged();
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userUpdated), Toast.LENGTH_SHORT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                             }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            Toast.makeText(v.getContext(),v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }

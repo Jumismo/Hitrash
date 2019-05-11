@@ -36,4 +36,16 @@
     <string name="time_picker_result_value">%1$s:%2$s</string>
     <string name="newGroupTitle">Create New Group</string>
     <string name="profile">Profile</string>
+    <string name="add_image">Add Image</string>
+    <string name="errorParseObject">Error, data cannot parse in Object</string>
+    <string name="errorLogin">Error, username or password is invalid.</string>
+    <string name="errorRequest">Error, request failed</string>
+    <string name="userUpdated">Updated user</string>
+    <string name="userNotUpdated">Error, User not updated</string>
+    <string name="errorInsertObject">Error, object not inserted</string>
+    <string name="commentUpdate">Comment updated</string>
+    <string name="hikingTrailNotUpdated">Error, Hiking Trail not updated</string>
+    <string name="groupCreated">Group has been created</string>
+    <string name="hikingTrailCreated">Hiking Train has been created</string>
+    <string name="hikingTrailUpdated">Hiking Trails has been updated</string>
 </resources>

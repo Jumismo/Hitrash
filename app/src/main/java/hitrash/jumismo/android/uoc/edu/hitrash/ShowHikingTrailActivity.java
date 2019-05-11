@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -31,6 +32,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity {
     private ImageView imageSignalize;
     private ImageView imageInformationOffice;
     private ImageView imageGuide;
+    private ImageView imageHikingTrail;
 
     private ImageButton imageUserGroupButton;
     private ImageButton imageCleaningGroupButton;
@@ -53,6 +55,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity {
         imageSignalize = (ImageView) findViewById(R.id.imageSignalize);
         imageInformationOffice = (ImageView) findViewById(R.id.imageInformationOffice);
         imageGuide = (ImageView) findViewById(R.id.imageGuide);
+        imageHikingTrail = (ImageView) findViewById(R.id.imageHikingTrail);
 
         imageUserGroupButton = (ImageButton) findViewById(R.id.imageUserGroupButton);
         imageCleaningGroupButton = (ImageButton) findViewById(R.id.imageCleaningGroupButton);
@@ -72,6 +75,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity {
                     provinceLabel.setText(hikingTrail.getProvince());
                     hardnessLabel.setText(hikingTrail.getHardness());
                     distanceLabel.setText(hikingTrail.getDistance().toString());
+                    imageHikingTrail.setImageBitmap(hikingTrail.getImages().get(0));
 
                     if(hikingTrail.getSignalize()){
                         imageSignalize.setVisibility(View.VISIBLE);
@@ -97,7 +101,13 @@ public class ShowHikingTrailActivity extends AppCompatActivity {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

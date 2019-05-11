@@ -1,6 +1,7 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +20,20 @@ public class PrincipalAdminActivity extends AppCompatActivity {
         buttonUserList = findViewById(R.id.buttonUserList);
         buttonManageHikingTrail = findViewById(R.id.buttonManageHikingTrails);
         buttonCleaningClaims = findViewById(R.id.buttonCleaningClaims);
+
+        buttonExit.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                SharedPreferences settings = getSharedPreferences("Preference", 0);
+                SharedPreferences.Editor editor = settings.edit();
+                editor.remove("IdUser");
+                editor.remove("IsAdmin");
+                editor.commit();
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         buttonUserList.setOnClickListener(new Button.OnClickListener(){
             @Override

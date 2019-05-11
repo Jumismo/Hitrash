@@ -14,6 +14,7 @@ public class PrincipalUserActivity extends AppCompatActivity {
     private Button buttonHikingTrails;
     private Button buttonClean;
     private Button buttonProfilePrincipal;
+    private Button buttonExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +25,23 @@ public class PrincipalUserActivity extends AppCompatActivity {
         buttonHikingTrails = findViewById(R.id.buttonHikingTrails);
         buttonClean = findViewById(R.id.buttonClean);
         buttonProfilePrincipal = findViewById(R.id.buttonProfilePrincipal);
+        buttonExit = findViewById(R.id.buttonExit);
 
-        SharedPreferences settings = getSharedPreferences("Preference", 0);
+        final SharedPreferences settings = getSharedPreferences("Preference", 0);
         final String idUser = settings.getString("IdUser", "");
+
+        buttonExit.setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = settings.edit();
+                editor.remove("IdUser");
+                editor.remove("IsAdmin");
+                editor.commit();
+
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         buttonProfilePrincipal.setOnClickListener(new Button.OnClickListener(){
             @Override

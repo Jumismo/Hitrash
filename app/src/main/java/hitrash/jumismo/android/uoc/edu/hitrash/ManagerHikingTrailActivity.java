@@ -1,10 +1,12 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -27,6 +29,8 @@ public class ManagerHikingTrailActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager lManager;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,14 @@ public class ManagerHikingTrailActivity extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
 
         AsyncHttpUtils.get(Constants.URI_HIKING_TRAILS, null, new JsonHttpResponseHandler(){
+
+            @Override
+            public void onStart() {
+                super.onStart();
+                dialog = ProgressDialog.show(ManagerHikingTrailActivity.this, "",
+                        "Loading. Please wait...", true);
+            }
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 Log.d("Get Hiking Trails", "Hiking Trails got");
@@ -56,17 +68,21 @@ public class ManagerHikingTrailActivity extends AppCompatActivity {
 
                     adapter = new ManageHikingTrailArrayAdapter(hikingTrailList);
                     recycler.setAdapter(adapter);
+                    dialog.dismiss();
 
                 }
                 catch (JSONException e)
                 {
                     e.printStackTrace();
+                    dialog.dismiss();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                super.onSuccess(statusCode, headers, response);
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                dialog.dismiss();
+                Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }

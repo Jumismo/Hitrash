@@ -17,7 +17,6 @@ public class User {
 
     private String id;
     private String name;
-    private String lastname;
     private String password;
     private String email;
     private Boolean isAdmin;
@@ -37,6 +36,7 @@ public class User {
         this.password = password;
         this.email = email;
         this.isAdmin = isAdmin;
+        this.isActive = false;
     }
 
     public String getId() {
@@ -53,14 +53,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public Boolean getActive() {
@@ -99,6 +91,7 @@ public class User {
 
     public void setIsActive(Boolean isActive){ this.isActive = isActive;}
 
+    // Método para parsear un objeto recibido en una petición.
     public void parseFromJSON(JSONObject data)
     {
         try {

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Add event onclick to login button
+        // Evento onClick del botón login para iniciar la actividad LoginActivity
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         buttonLogin.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Add event onclick to register button
+        // Evento onClick del botón register para iniciar la actividad RegisterActivity
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
         buttonRegister.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
@@ -34,9 +34,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
-
-
 }

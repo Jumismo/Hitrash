@@ -1,7 +1,11 @@
 package hitrash.jumismo.android.uoc.edu.hitrash.Model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
+import android.util.Base64;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +29,7 @@ public class HikingTrail {
     private Boolean isActive;
     private User user;
     private List<Group> groups = new ArrayList<Group>();
-//    private List<Image> images = new ArrayList<Image>();
+    private List<Bitmap> images = new ArrayList<Bitmap>();
 
 
     public HikingTrail() {
@@ -150,6 +154,15 @@ public class HikingTrail {
         this.groups = groups;
     }
 
+    public List<Bitmap> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Bitmap> images) {
+        this.images = images;
+    }
+
+    // Método para parsear un objeto recibido en una petición.
     public void parseFromJSON(JSONObject jsonObject) {
         try {
             this.id = jsonObject.getString("_id");
@@ -163,8 +176,25 @@ public class HikingTrail {
             this.isActive = Boolean.parseBoolean(jsonObject.getString("isActive"));
             this.informationOffice = Boolean.parseBoolean(jsonObject.getString("informationOffice"));
             this.signalize = Boolean.parseBoolean(jsonObject.getString("signalize"));
+
+            // Parsear las imagenes de la base de datos
+            if(jsonObject.has("images")) {
+                JSONArray images = jsonObject.getJSONArray("images");
+                int size = images.length();
+                for (int i = 0; i < size; i++) {
+                    JSONObject imageObjectJSON = images.getJSONObject(i);
+                    JSONArray imageData = imageObjectJSON.getJSONArray("data");
+                    int lenght = imageData.length();
+                    byte[] arrayBytes = new byte[lenght];
+                    for (int j = 0; j < lenght; j++) {
+                        arrayBytes[j] = (byte) imageData.getInt(j);
+                    }
+                    Bitmap bm = BitmapFactory.decodeByteArray(arrayBytes, 0, arrayBytes.length);
+                    this.images.add(bm);
+                }
+            }
+
         }catch (JSONException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

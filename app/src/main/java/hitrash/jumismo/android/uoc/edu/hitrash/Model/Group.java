@@ -126,6 +126,7 @@ public class Group implements Serializable {
         this.users = users;
     }
 
+    // Método para parsear un objeto recibido en una petición.
     public void parseFromJSON(JSONObject jsonObject) {
         try {
             this.id = jsonObject.getString("_id");
@@ -136,25 +137,30 @@ public class Group implements Serializable {
             this.date = formatter.parse(jsonObject.getString("date"));
             this.isActive = Boolean.parseBoolean(jsonObject.getString("isActive"));
             this.isCleaningGroup = Boolean.parseBoolean(jsonObject.getString("isCleaningGroup"));
-            HikingTrail hikingTrail = new HikingTrail();
-            hikingTrail.parseFromJSON(jsonObject.getJSONObject("hikingTrail"));
-            this.hikingTrail = hikingTrail;
-            JSONArray usersJSON = jsonObject.getJSONArray("users");
-            int userSize = usersJSON.length();
-
-            for(int i =0; i < userSize; i++) {
-                User user = new User();
-                user.parseFromJSON(usersJSON.getJSONObject(i));
-                this.users.add(user);
+            if(jsonObject.has("hikingTrail")) {
+                HikingTrail hikingTrail = new HikingTrail();
+                hikingTrail.parseFromJSON(jsonObject.getJSONObject("hikingTrail"));
+                this.hikingTrail = hikingTrail;
             }
 
-            JSONArray commentsJSON = jsonObject.getJSONArray("comments");
-            int commentSize = commentsJSON.length();
+            if(jsonObject.has("users")){
+                JSONArray usersJSON = jsonObject.getJSONArray("users");
+                int userSize = usersJSON.length();
+                for(int i =0; i < userSize; i++) {
+                    User user = new User();
+                    user.parseFromJSON(usersJSON.getJSONObject(i));
+                    this.users.add(user);
+                }
+            }
 
-            for(int i =0; i < commentSize; i++) {
-                Comment comment = new Comment();
-                comment.parseFromJSON(commentsJSON.getJSONObject(i));
-                this.comments.add(comment);
+            if(jsonObject.has("comments")) {
+                JSONArray commentsJSON = jsonObject.getJSONArray("comments");
+                int commentSize = commentsJSON.length();
+                for (int i = 0; i < commentSize; i++) {
+                    Comment comment = new Comment();
+                    comment.parseFromJSON(commentsJSON.getJSONObject(i));
+                    this.comments.add(comment);
+                }
             }
 
         } catch (JSONException e) {

@@ -19,7 +19,6 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 public class CleaningClaimsArrayAdapter extends RecyclerView.Adapter<CleaningClaimsArrayAdapter.ViewHolder> {
 
     public List<HikingTrail> hikingTrailsClaimsList;
-    public int currentPosition;
 
     public CleaningClaimsArrayAdapter(List<HikingTrail> hikingTrailsWithClaimsList) {
         this.hikingTrailsClaimsList = hikingTrailsWithClaimsList;
@@ -35,8 +34,6 @@ public class CleaningClaimsArrayAdapter extends RecyclerView.Adapter<CleaningCla
     @Override
     public void onBindViewHolder(@NonNull CleaningClaimsArrayAdapter.ViewHolder viewHolder, int i) {
         HikingTrail hikingTrail = hikingTrailsClaimsList.get(i);
-        currentPosition = i;
-
         viewHolder.nameHikingTrail.setText(hikingTrail.getName());
     }
 
@@ -63,8 +60,6 @@ public class CleaningClaimsArrayAdapter extends RecyclerView.Adapter<CleaningCla
                     email.putExtra(Intent.EXTRA_EMAIL, new String[]{ "jumisanbeg@gmail.com"});
                     email.putExtra(Intent.EXTRA_SUBJECT, "Claims of " + nameHikingTrail.getText().toString());
                     email.putExtra(Intent.EXTRA_TEXT, "Please clean this hiking trail");
-
-//need this to prompts email client only
                     email.setType("message/rfc822");
 
                     v.getContext().startActivity(Intent.createChooser(email, "Choose an Email client :"));

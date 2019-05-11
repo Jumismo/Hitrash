@@ -90,20 +90,22 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
                                 userList.set(userList.indexOf(user), userUpdated);
 
                                 if(!userUpdated.getIsActive().equals(true)){
-                                    Toast.makeText(v.getContext(), "No se ha actualizado el usuario", Toast.LENGTH_SHORT);
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userNotUpdated), Toast.LENGTH_SHORT);
                                 }
                                 else{
                                     notifyDataSetChanged();
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userUpdated), Toast.LENGTH_SHORT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_SHORT);
                             }
 
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                            Toast.makeText(v.getContext(), v.getContext(). getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -125,21 +127,22 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
                                 userList.set(userList.indexOf(user), userUpdated);
 
                                 if(!userUpdated.getIsActive().equals(false)){
-                                    Toast.makeText(v.getContext(), "No se ha actualizado el usuario", Toast.LENGTH_SHORT);
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userNotUpdated), Toast.LENGTH_SHORT);
                                 }
                                 else{
-
                                     notifyDataSetChanged();
+                                    Toast.makeText(v.getContext(), v.getContext().getString(R.string.userUpdated), Toast.LENGTH_SHORT);
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_SHORT);
                             }
 
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-                            super.onFailure(statusCode, headers, throwable, errorResponse);
+                            Toast.makeText(v.getContext(), v.getContext(). getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
 

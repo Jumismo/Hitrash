@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -44,7 +45,7 @@ public class CleaningClaimsActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                Log.d("Get Claims", "Claims got");
+
                 try {
                     JSONArray data =  (JSONArray) response.get("data");
                     int size = data.length();
@@ -62,12 +63,13 @@ public class CleaningClaimsActivity extends AppCompatActivity {
                 catch (JSONException e)
                 {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                Log.d("Get Users", "Entra en array");
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 

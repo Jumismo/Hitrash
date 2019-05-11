@@ -1,11 +1,13 @@
 package hitrash.jumismo.android.uoc.edu.hitrash;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -28,6 +30,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private String id_user;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public class ProfileActivity extends AppCompatActivity {
         confirmProfile = (ImageButton) findViewById(R.id.confirmProfile);
 
         AsyncHttpUtils.get(Constants.URI_USER + id_user, null, new JsonHttpResponseHandler(){
+
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
@@ -64,28 +69,42 @@ public class ProfileActivity extends AppCompatActivity {
 
         confirmProfile.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 RequestParams rp = new RequestParams();
                 rp.add("name", editProfileUsername.getText().toString());
                 rp.add("password", editProfilePassword.getText().toString());
                 rp.add("email", editProfileEmail.getText().toString());
                 AsyncHttpUtils.put(Constants.URI_UPDATE_USER + id_user, rp, new JsonHttpResponseHandler(){
+
+                    @Override
+                    public void onStart() {
+                        super.onStart();
+                        dialog = ProgressDialog.show(v.getContext(), "",
+                                "Loading. Please wait...", true);
+                    }
+
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                         try{
                             JSONObject data = response.getJSONObject("data");
                             User user = new User();
                             user.parseFromJSON(data);
+                            dialog.dismiss();
+                            Toast.makeText(v.getContext(), v.getContext().getString(R.string.userUpdated), Toast.LENGTH_LONG).show();
+
                         } catch (JSONException e) {
-                            e.printStackTrace();
+                            dialog.dismiss();
+                            Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                         }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        dialog.dismiss();
+                        Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
             }
         });
-
-
-
-
     }
 }

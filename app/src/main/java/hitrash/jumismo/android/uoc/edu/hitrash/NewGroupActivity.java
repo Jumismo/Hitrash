@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
@@ -97,9 +98,8 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
 
@@ -125,6 +125,7 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
                     rp.add("date", dateRP);
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                 }
 
 
@@ -135,9 +136,7 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
                 for (int i = 0; i < len; i++) {
                     if (checked.get(i)) {
                         User item = userList.get(i);
-
                         rp.add("users[]", item.getId());
-                        /* do whatever you want with the checked item */
                     }
                 }
 
@@ -148,10 +147,17 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
                             JSONObject data = response.getJSONObject("data");
                             Group group = new Group();
                             group.parseFromJSON(data);
+                            Toast.makeText(getApplicationContext(), getString(R.string.groupCreated), Toast.LENGTH_LONG).show();
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
                         }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
 
