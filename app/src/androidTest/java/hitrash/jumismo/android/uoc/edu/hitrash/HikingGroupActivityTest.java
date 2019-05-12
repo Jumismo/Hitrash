@@ -22,7 +22,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -31,13 +30,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class ManagerHikingTrailActivityTest {
+public class HikingGroupActivityTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void managerHikingTrailActivityTest() {
+    public void hikingGroupActivityTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.buttonLogin), withText("Login"),
                         childAtPosition(
@@ -66,10 +65,10 @@ public class ManagerHikingTrailActivityTest {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("jumismo"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("marta"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.editUsername), withText("jumismo"),
+                allOf(withId(R.id.editUsername), withText("marta"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -86,10 +85,10 @@ public class ManagerHikingTrailActivityTest {
                                         0),
                                 4),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("123456789"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText("marta"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.editPassword), withText("123456789"),
+                allOf(withId(R.id.editPassword), withText("marta"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -109,7 +108,7 @@ public class ManagerHikingTrailActivityTest {
         appCompatImageButton.perform(click());
 
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.buttonManageHikingTrails), withText("Manage Hiking Trails"),
+                allOf(withId(R.id.buttonHikingGroup), withText("Hiking Group"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
@@ -119,14 +118,13 @@ public class ManagerHikingTrailActivityTest {
         appCompatButton2.perform(click());
 
         ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.acceptButtonMHT),
+                allOf(withId(R.id.buttonJoinHikingGroup),
                         childAtPosition(
                                 childAtPosition(
-                                        withId(R.id.card_view_manage_hiking_trail),
+                                        withId(R.id.card_view_hiking_group),
                                         0),
-                                4),
+                                2),
                         isDisplayed()));
-
         appCompatImageButton2.perform(click());
     }
 

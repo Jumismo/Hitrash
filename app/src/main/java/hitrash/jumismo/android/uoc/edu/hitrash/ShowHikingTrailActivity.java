@@ -75,7 +75,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity {
                     provinceLabel.setText(hikingTrail.getProvince());
                     hardnessLabel.setText(hikingTrail.getHardness());
                     distanceLabel.setText(hikingTrail.getDistance().toString());
-                    imageHikingTrail.setImageBitmap(hikingTrail.getImages().get(0));
+//                    imageHikingTrail.setImageBitmap(hikingTrail.getImages().get(0));
 
                     if(hikingTrail.getSignalize()){
                         imageSignalize.setVisibility(View.VISIBLE);
