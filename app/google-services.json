@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "215119884108",
+    "firebase_url": "https://hitrash.firebaseio.com",
+    "project_id": "hitrash",
+    "storage_bucket": "hitrash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215119884108:android:aae984802be2a9d0",
+        "android_client_info": {
+          "package_name": "hitrash.jumismo.android.uoc.edu.hitrash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215119884108-56ci5oda1em2577v8sj99boko121tai5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHvXkAEH2ay2bkevQt01Z0bqjT5dXkFcw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215119884108-56ci5oda1em2577v8sj99boko121tai5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

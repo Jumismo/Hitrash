@@ -48,4 +48,6 @@
     <string name="groupCreated">Group has been created</string>
     <string name="hikingTrailCreated">Hiking Train has been created</string>
     <string name="hikingTrailUpdated">Hiking Trails has been updated</string>
+
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBHvXkAEH2ay2bkevQt01Z0bqjT5dXkFcw</string>
 </resources>

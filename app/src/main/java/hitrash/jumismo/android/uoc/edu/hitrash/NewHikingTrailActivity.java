@@ -2,11 +2,14 @@ package hitrash.jumismo.android.uoc.edu.hitrash;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -20,6 +23,16 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -36,7 +49,8 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
 
-public class NewHikingTrailActivity extends AppCompatActivity {
+public class NewHikingTrailActivity extends AppCompatActivity implements OnMapReadyCallback,
+        GoogleMap.OnCameraMoveListener{
 
     private EditText nameHikingTrailEditText;
     private EditText provinceHikingTrailEditText;
@@ -53,6 +67,17 @@ public class NewHikingTrailActivity extends AppCompatActivity {
 
     private List<String> imageList;
     private static int RESULT_LOAD_IMAGE = 1;
+
+    // Maps variables
+    private SharedPreferences sharedPref;
+    private GoogleMap mMap;
+    private float DEFAULT_ZOOM = 12f;
+    private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
+    private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+    private Boolean mLocationPermissionsGranted = false;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private MarkerOptions locationMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +98,9 @@ public class NewHikingTrailActivity extends AppCompatActivity {
         acceptButtonHikingTrail = (ImageButton) findViewById(R.id.acceptButtonHikingTrail);
 
         imageList = new ArrayList<String>();
+
+        // Enable the permissions for the location
+        getLocationPermission();
 
         Intent intent = getIntent();
         final String id = intent.getStringExtra("id_user");
@@ -101,8 +129,9 @@ public class NewHikingTrailActivity extends AppCompatActivity {
                 rp.add("informationOffice", String.valueOf(informationOfficeHikingTrailCheckbox.isChecked()));
                 rp.add("guide", String.valueOf(guideHikingTrailCheckbox.isChecked()));
                 rp.add("hardness", hardnessTypeHikingTrailSpinner.getSelectedItem().toString());
-                rp.add("location", "0.0, 0.0");
+//                rp.add("location", "0.0, 0.0");
                 rp.add("id_user", id);
+                rp.add("location", locationMarker.getPosition().latitude + "," + locationMarker.getPosition().longitude);
 
                 for(String file : imageList)
                 {
@@ -147,6 +176,132 @@ public class NewHikingTrailActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void initMap(){
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(NewHikingTrailActivity.this);
+    }
+
+    private void moveCamera(LatLng latLng, float zoom){
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
+    }
+
+    @Override
+    public void onCameraMove() {
+        if(DEFAULT_ZOOM != mMap.getCameraPosition().zoom) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putFloat("DEFAULT_ZOOM", mMap.getCameraPosition().zoom);
+            editor.commit();
+
+            DEFAULT_ZOOM = sharedPref.getFloat("DEFAULT_ZOOM", 12f);
+        }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            getDeviceLocation();
+            mMap.setMyLocationEnabled(true);
+            mMap.getUiSettings().setZoomControlsEnabled(true);
+            mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+            mMap.setOnCameraMoveListener(this);
+        }
+
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng point) {
+                mMap.clear();
+                locationMarker = new MarkerOptions().position(point);
+                mMap.addMarker(locationMarker);
+            }
+        });
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        mLocationPermissionsGranted = false;
+
+        switch(requestCode){
+            case LOCATION_PERMISSION_REQUEST_CODE:{
+                if(grantResults.length > 0){
+                    for(int i = 0; i < grantResults.length; i++){
+                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                            mLocationPermissionsGranted = false;
+                            Toast.makeText(this, "Permission failed", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+                    mLocationPermissionsGranted = true;
+                    //initialize our map
+                    initMap();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        if(DEFAULT_ZOOM != mMap.getCameraPosition().zoom) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putFloat("DEFAULT_ZOOM", mMap.getCameraPosition().zoom);
+            editor.commit();
+
+            DEFAULT_ZOOM = sharedPref.getFloat("DEFAULT_ZOOM", 12f);
+        }
+    }
+
+    private void getDeviceLocation(){
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        try{
+            if(mLocationPermissionsGranted){
+
+                final Task location = mFusedLocationClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener() {
+                    @Override
+                    public void onComplete(@NonNull Task task) {
+                        if(task.isSuccessful()){
+                            Location currentLocation = (Location) task.getResult();
+
+                            moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
+                                    DEFAULT_ZOOM);
+
+                        }else{
+                            Toast.makeText(NewHikingTrailActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        }catch (SecurityException e){
+        }
+    }
+
+    private void getLocationPermission(){
+        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION};
+
+        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                    COURSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                mLocationPermissionsGranted = true;
+                initMap();
+            }else{
+                ActivityCompat.requestPermissions(this,
+                        permissions,
+                        LOCATION_PERMISSION_REQUEST_CODE);
+            }
+        }else{
+            ActivityCompat.requestPermissions(this,
+                    permissions,
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        }
+    }
+
     //TODO: Implementar funcionalidad para cargar imágenes en base de datos
 //    Implementación para cargar las imágenes en una ruta de senderismo (En proceso)
 //    @Override

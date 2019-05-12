@@ -61,10 +61,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.1.1'
     testImplementation 'org.robolectric:robolectric:4.0.2'
 
-
     // Assertions
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.ext:truth:1.1.0'
     androidTestImplementation 'com.google.truth:truth:0.42'
 
+    // Maps
+    //implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
 }
+
+apply plugin: 'com.google.gms.google-services'
