@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 
@@ -35,5 +38,7 @@ public class UserTest {
         assertTrue(user.getEmail().equals("emailTest@test.org"));
         assertTrue(user.getIsActive().equals(false));
         assertTrue(user.getAdmin().equals(false));
+
+        assertThat(user.getIsActive(), instanceOf(Boolean.class));
     }
 }

@@ -177,6 +177,7 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
         });
     }
 
+    // Método que inicia el fragment del mapa
     private void initMap(){
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -202,7 +203,10 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
             getDeviceLocation();
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -254,6 +258,7 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
         }
     }
 
+    // Método para recuperar la localización del usuario
     private void getDeviceLocation(){
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -280,6 +285,7 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
         }
     }
 
+    // Método para solicitar permisos al usuario para la localización
     private void getLocationPermission(){
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};

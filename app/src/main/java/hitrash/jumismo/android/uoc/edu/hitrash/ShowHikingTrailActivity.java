@@ -198,15 +198,6 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
             mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
             mMap.setOnCameraMoveListener(this);
         }
-
-//        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-//            @Override
-//            public void onMapClick(LatLng point) {
-//                mMap.clear();
-//                mMap.addMarker(new MarkerOptions().position(point));
-//            }
-//        });
-
     }
 
     @Override
@@ -243,6 +234,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
         }
     }
 
+    // Método para recuperar la localización del usuario
     private void getDeviceLocation(){
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -274,11 +266,14 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
     }
 
+    // Método que inicia el fragment del mapa
     private void initMap(){
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(ShowHikingTrailActivity.this);
     }
+
+    // Método para solicitar permisos al usuario para la localización
 
     private void getLocationPermission(){
         String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
