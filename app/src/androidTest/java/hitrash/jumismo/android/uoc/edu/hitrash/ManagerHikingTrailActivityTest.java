@@ -27,6 +27,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.childAtPosition;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
@@ -118,34 +120,18 @@ public class ManagerHikingTrailActivityTest {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.acceptButtonMHT),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.card_view_manage_hiking_trail),
-                                        0),
-                                4),
-                        isDisplayed()));
+        onView(withRecyclerView(R.id.manage_hiking_trail_recycle_view).atPositionOnView(4, R.id.acceptButtonMHT)).perform(click());
 
-        appCompatImageButton2.perform(click());
+//        ViewInteraction appCompatImageButton2 = onView(
+//                allOf(withId(R.id.acceptButtonMHT),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.card_view_manage_hiking_trail),
+//                                        0),
+//                                4),
+//                        isDisplayed()));
+
+//        appCompatImageButton2.perform(click());
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 }

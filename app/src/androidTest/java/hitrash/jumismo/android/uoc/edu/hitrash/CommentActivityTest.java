@@ -31,6 +31,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.childAtPosition;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
@@ -124,12 +126,14 @@ public class CommentActivityTest {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        ViewInteraction recyclerView = onView(
-                allOf(withId(R.id.user_group_list_recycler_view),
-                        childAtPosition(
-                                withClassName(is("android.support.constraint.ConstraintLayout")),
-                                0)));
-        recyclerView.perform(actionOnItemAtPosition(1, click()));
+//        ViewInteraction recyclerView = onView(
+//                allOf(withId(R.id.user_group_list_recycler_view),
+//                        childAtPosition(
+//                                withClassName(is("android.support.constraint.ConstraintLayout")),
+//                                0)));
+//        recyclerView.perform(actionOnItemAtPosition(1, click()));
+
+        onView(withRecyclerView(R.id.user_group_list_recycler_view).atPosition(1)).perform(click());
 
         ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.insertCommentUserGroup),
@@ -150,22 +154,4 @@ public class CommentActivityTest {
         appCompatImageButton2.perform(scrollTo(), click());
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 }

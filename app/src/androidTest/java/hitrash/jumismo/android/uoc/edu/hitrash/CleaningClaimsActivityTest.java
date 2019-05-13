@@ -27,6 +27,8 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.childAtPosition;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
@@ -37,7 +39,7 @@ public class CleaningClaimsActivityTest {
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void cleaningClaimsActivityTest() {
+    public void cleaningClaimsActivityTest() throws InterruptedException {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.buttonLogin), withText("Login"),
                         childAtPosition(
@@ -116,35 +118,27 @@ public class CleaningClaimsActivityTest {
                                         0),
                                 4),
                         isDisplayed()));
+
         appCompatButton3.perform(click());
 
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.sendMail),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.card_view_item_claim),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
+        onView(withRecyclerView(R.id.cleaning_claims_recycler_view).atPositionOnView(0, R.id.sendMail)).perform(click());
+
+//        ViewInteraction appCompatButton3 = onView(withId(R.id.buttonCleaningClaims));
+//        appCompatButton3.perform(click());
+//
+//        onView(withRecyclerView(R.id.cleaning_claims_recycler_view).atPosition(1)).perform(click());
+
+
+//        ViewInteraction appCompatImageButton2 = onView(
+//                allOf(withId(R.id.sendMail),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.card_view_item_claim),
+//                                        0),
+//                                2),
+//                        isDisplayed()));
+//
+//        appCompatImageButton2.perform(click());
     }
 
-    private static Matcher<View> childAtPosition(
-            final Matcher<View> parentMatcher, final int position) {
-
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("Child at position " + position + " in parent ");
-                parentMatcher.describeTo(description);
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                ViewParent parent = view.getParent();
-                return parent instanceof ViewGroup && parentMatcher.matches(parent)
-                        && view.equals(((ViewGroup) parent).getChildAt(position));
-            }
-        };
-    }
 }
