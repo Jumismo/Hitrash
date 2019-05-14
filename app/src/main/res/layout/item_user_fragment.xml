@@ -15,12 +15,13 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         card_view:cardCornerRadius="4dp"
+        android:background="@color/backgroundApp"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:paddingBottom="5dp">
 
             <TextView
@@ -47,8 +48,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_margin="10dp"
                 android:layout_gravity="right|center"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_block" />
+                android:background="@drawable/ic_block" />
 
         </RelativeLayout>
 

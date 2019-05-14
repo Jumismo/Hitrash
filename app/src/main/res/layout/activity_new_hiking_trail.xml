@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundApp"
     tools:context=".NewHikingTrailActivity">
     <TextView
         android:id="@+id/nameHikingTrailLabel"
@@ -45,7 +46,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="8dp"
-        android:background="@drawable/ic_insert_comment"
+        android:background="@mipmap/ic_insert_image_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map" />
     <TextView
@@ -150,11 +151,14 @@
         android:text="@string/guide"
         app:layout_constraintStart_toEndOf="@+id/distanceHikingTrailEditText"
         app:layout_constraintTop_toBottomOf="@+id/informationOfficeHikingTrailCheckbox" />
+
     <ImageButton
         android:id="@+id/acceptButtonHikingTrail"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:background="@drawable/ic_confirm"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@mipmap/ic_confirm_color_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

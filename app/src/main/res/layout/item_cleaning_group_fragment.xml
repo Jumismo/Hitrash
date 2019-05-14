@@ -6,7 +6,9 @@
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+    android:background="@color/backgroundApp"
+    >
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_cleaning_group"
@@ -27,7 +29,7 @@
                 android:id="@+id/imageCleaningGroup"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_goup"/>
+                android:src="@mipmap/ic_group_foreground"/>
 
             <TextView
                 android:id="@+id/nameCleaningGroup"
@@ -42,7 +44,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/ic_register"/>
+                android:background="@mipmap/ic_register_foreground"/>
 
         </RelativeLayout>
 

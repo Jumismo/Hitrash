@@ -5,7 +5,9 @@
     android:layout_marginTop="5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+    android:background="@color/backgroundApp"
+    >
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_item_claim"
@@ -24,7 +26,8 @@
                 android:id="@+id/claimImage"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/ic_claim"/>
+                android:layout_margin="10dp"
+                android:src="@mipmap/ic_claim_foreground"/>
 
             <TextView
                 android:id="@+id/nameHikingTrail"
@@ -37,10 +40,12 @@
 
             <ImageButton
                 android:id="@+id/sendMail"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="20dp"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/ic_confirm" />
+                android:background="@mipmap/ic_confirm_color_foreground" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
