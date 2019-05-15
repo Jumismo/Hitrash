@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -58,6 +59,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
     private ImageButton imageCleaningGroupButton;
 
     private String id_hiking_trail;
+    private Integer claims;
 
     // Maps variables
     private SharedPreferences sharedPref;
@@ -90,6 +92,8 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
 
         imageUserGroupButton = (ImageButton) findViewById(R.id.imageUserGroupButton);
         imageCleaningGroupButton = (ImageButton) findViewById(R.id.imageCleaningGroupButton);
+        cleaningClaimButton = (ImageButton) findViewById(R.id.cleaningClaimButton);
+        startRouteButton = (ImageButton) findViewById(R.id.startRouteButton);
 
         // Save the DEFAULT_ZOOM of the camera of Google Maps
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -110,6 +114,8 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
                     JSONObject data = response.getJSONObject("data");
                     HikingTrail hikingTrail = new HikingTrail();
                     hikingTrail.parseFromJSON(data);
+
+                    claims = hikingTrail.getClaims();
 
                     nameHikingTrailLabel.setText(hikingTrail.getName());
                     provinceLabel.setText(hikingTrail.getProvince());
@@ -152,6 +158,43 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
             @Override
             public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
                 Toast.makeText(getApplicationContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        startRouteButton.setOnClickListener(new ImageButton.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), getText(R.string.notImplemented), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        cleaningClaimButton.setOnClickListener(new ImageButton.OnClickListener(){
+            @Override
+            public void onClick(final View v) {
+                RequestParams rp = new RequestParams();
+                claims = claims + 1;
+                rp.add("claims", String.valueOf(claims));
+                AsyncHttpUtils.put(Constants.URI_UPDATE_HIKING_TRAIL + id_hiking_trail, rp, new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        JSONObject data = null;
+                        try {
+                            data = response.getJSONObject("data");
+                            HikingTrail hikingTrail = new HikingTrail();
+                            hikingTrail.parseFromJSON(data);
+
+                            Toast.makeText(v.getContext(), getText(R.string.hikingTrailUpdated), Toast.LENGTH_LONG).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(v.getContext(), getText(R.string.hikingTrailNotUpdated), Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                        Toast.makeText(v.getContext(), getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
 

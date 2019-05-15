@@ -13,7 +13,7 @@
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view_hiking_group"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         card_view:cardCornerRadius="4dp"
@@ -31,18 +31,18 @@
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/imagenUserConversation"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_login_foreground"/>
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:background="@mipmap/ic_login_foreground"/>
 
                 <TextView
                     android:id="@+id/publicationDateConversation"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    />
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp" />
             </RelativeLayout>
 
             <LinearLayout
@@ -51,6 +51,7 @@
                 android:layout_below="@id/headerConversation">
                 <TextView
                     android:id="@+id/commentConversation"
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
