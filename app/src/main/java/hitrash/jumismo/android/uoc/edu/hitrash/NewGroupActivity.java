@@ -113,7 +113,7 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
 
         acceptButtonGroup.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
                 RequestParams rp = new RequestParams();
                 rp.add("name", groupNameInput.getText().toString());
                 rp.add("description", groupDescriptionInput.getText().toString());
@@ -148,6 +148,9 @@ public class NewGroupActivity extends AppCompatActivity implements CalendarDateP
                             Group group = new Group();
                             group.parseFromJSON(data);
                             Toast.makeText(getApplicationContext(), getString(R.string.groupCreated), Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(v.getContext(), HikingTrailsActivity.class);
+                            startActivity(intent);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

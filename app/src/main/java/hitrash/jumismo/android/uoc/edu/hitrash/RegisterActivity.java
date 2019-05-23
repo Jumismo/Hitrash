@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -55,28 +56,21 @@ public class RegisterActivity extends AppCompatActivity {
                                 userRegister.parseFromJSON(data);
 
                                 if(userRegister.getId()!= "") {
-                                    SharedPreferences settings = getSharedPreferences("Preference", 0);
-                                    SharedPreferences.Editor editor = settings.edit();
-                                    editor.putString("IdUser", userRegister.getId());
-                                    editor.putBoolean("IsAdmin", userRegister.getAdmin());
-                                    // Commit the edits!
-                                    editor.commit();
-
-                                    if (userRegister.getAdmin()) {
-                                        Intent intent = new Intent(v.getContext(), PrincipalAdminActivity.class);
-                                        startActivity(intent);
-
-                                    } else {
-                                        Intent intent = new Intent(v.getContext(), PrincipalUserActivity.class);
-                                        startActivity(intent);
-                                    }
+                                    Intent intent = new Intent(v.getContext(), LoginActivity.class);
+                                    startActivity(intent);
                                 }
 
                             }catch (JSONException e){
                                 e.printStackTrace();
+                                Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorParseObject), Toast.LENGTH_LONG).show();
+
                             }
                         }
 
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                            Toast.makeText(v.getContext(), v.getContext().getString(R.string.errorRequest) + ": " + throwable.getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     });
 
                 }

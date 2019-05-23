@@ -38,7 +38,7 @@
     <string name="profile">Profile</string>
     <string name="add_image">Add Image</string>
     <string name="errorParseObject">Error, data cannot parse in Object</string>
-    <string name="errorLogin">Error, username or password is invalid.</string>
+    <string name="errorLogin">Error, username or password is invalid. Also, is posible that your account is inactive.</string>
     <string name="errorRequest">Error, request failed</string>
     <string name="userUpdated">Updated user</string>
     <string name="userNotUpdated">Error, User not updated</string>

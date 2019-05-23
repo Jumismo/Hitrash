@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                                 userLogged = new User();
                                 userLogged.parseFromJSON(data);
 
-                                if(userLogged.getId()!= ""){
+                                if(userLogged.getIsActive()){
                                     SharedPreferences settings = getSharedPreferences("Preference", 0);
                                     SharedPreferences.Editor editor = settings.edit();
                                     editor.putString("IdUser", userLogged.getId());
