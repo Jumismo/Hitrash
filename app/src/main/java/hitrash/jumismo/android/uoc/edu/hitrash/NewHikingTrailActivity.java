@@ -168,11 +168,13 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
         imageAddButton.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(
-                        Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                Toast.makeText(v.getContext(), getText(R.string.notImplemented), Toast.LENGTH_LONG).show();
+                // TODO: Implementar la carga de imágenes
+//                Intent i = new Intent(
+//                        Intent.ACTION_PICK,
+//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//
+//                startActivityForResult(i, RESULT_LOAD_IMAGE);
             }
         });
     }
