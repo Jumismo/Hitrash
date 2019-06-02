@@ -32,11 +32,14 @@
             <TextView
                 android:id="@+id/nameHikingTrail"
                 android:layout_width="wrap_content"
-                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginLeft="20dp"
-                android:layout_height="50dp"
-                android:layout_toRightOf="@+id/claimImage"
-                />
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_toStartOf="@+id/sendMail"
+                android:layout_toEndOf="@+id/claimImage"
+                android:layout_toRightOf="@+id/claimImage" />
 
             <ImageButton
                 android:id="@+id/sendMail"

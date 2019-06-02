@@ -77,11 +77,12 @@
 
     <TextView
         android:id="@+id/provinceLabel"
-        android:layout_width="100dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageLocation"
         app:layout_constraintTop_toTopOf="@+id/imageLocation" />
 
@@ -89,11 +90,11 @@
         android:id="@+id/imageHardness"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_hardness"
-        app:layout_constraintStart_toEndOf="@+id/provinceLabel"
-        app:layout_constraintTop_toBottomOf="@+id/cleaningClaimButton" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageDistance" />
 
     <TextView
         android:id="@+id/hardnessLabel"
@@ -103,7 +104,7 @@
         android:layout_marginTop="8dp"
         android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/imageHardness"
-        app:layout_constraintTop_toTopOf="@+id/imageLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
 
     <ImageView
         android:id="@+id/imageDistance"
@@ -117,7 +118,7 @@
 
     <TextView
         android:id="@+id/distanceLabel"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -125,34 +126,44 @@
         app:layout_constraintStart_toEndOf="@+id/imageDistance"
         app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
 
+    <TextView
+        android:id="@+id/kmLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/km"
+        app:layout_constraintStart_toEndOf="@+id/distanceLabel"
+        app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
+
     <ImageView
         android:id="@+id/imageSignalize"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_signalize"
-        app:layout_constraintStart_toEndOf="@+id/distanceLabel"
+        app:layout_constraintEnd_toStartOf="@+id/imageInformationOffice"
         app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
 
     <ImageView
         android:id="@+id/imageInformationOffice"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_information_office"
-        app:layout_constraintStart_toEndOf="@+id/imageSignalize"
+        app:layout_constraintEnd_toStartOf="@+id/imageGuide"
         app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
 
     <ImageView
         android:id="@+id/imageGuide"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/ic_guide"
-        app:layout_constraintStart_toEndOf="@+id/imageInformationOffice"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/provinceLabel" />
 
     <!--<ImageView-->
@@ -186,26 +197,20 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@mipmap/ic_group_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSignalize" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/imageCleaningGroupButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@mipmap/ic_clean_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageSignalize" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 
