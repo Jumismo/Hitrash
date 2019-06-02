@@ -5,10 +5,13 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -20,6 +23,7 @@ import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -37,6 +41,14 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.editRegisterPassword);
         email = findViewById(R.id.editRegisterEmail);
         confirmRegister = findViewById(R.id.confirmRegister);
+
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        confirmRegister.startAnimation(myAnim);
 
         confirmRegister.setOnClickListener(new ImageButton.OnClickListener() {
             @Override
@@ -58,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(userRegister.getId()!= "") {
                                     Intent intent = new Intent(v.getContext(), LoginActivity.class);
                                     startActivity(intent);
+                                    Animatoo.animateSlideRight(RegisterActivity.this);
                                 }
 
                             }catch (JSONException e){

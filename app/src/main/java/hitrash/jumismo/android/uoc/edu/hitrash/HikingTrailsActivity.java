@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -23,6 +26,7 @@ import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class HikingTrailsActivity extends AppCompatActivity {
 
@@ -43,6 +47,15 @@ public class HikingTrailsActivity extends AppCompatActivity {
 
         newHikingTrailButton = (ImageButton) findViewById(R.id.newHikingTrailButton);
         backHikingTrailButton = (ImageButton) findViewById(R.id.backHikingTrailButton);
+
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        newHikingTrailButton.startAnimation(myAnim);
+        backHikingTrailButton.startAnimation(myAnim);
 
         recycler = (RecyclerView) findViewById(R.id.hiking_trail_list_recycler_view);
         recycler.setHasFixedSize(true);
@@ -88,6 +101,7 @@ public class HikingTrailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), NewHikingTrailActivity.class);
                 intent.putExtra("id_user", id);
                 startActivity(intent);
+                Animatoo.animateSlideDown(HikingTrailsActivity.this);
             }
         });
 
@@ -97,6 +111,7 @@ public class HikingTrailsActivity extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), PrincipalUserActivity.class);
                 intent.putExtra("id_user", id);
                 startActivity(intent);
+                Animatoo.animateSlideRight(HikingTrailsActivity.this);
             }
         });
 

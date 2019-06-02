@@ -74,6 +74,12 @@ dependencies {
     // hamcrest
     testImplementation 'org.hamcrest:hamcrest-core:2.1'
 
+    // Animators
+    implementation 'com.github.mohammadatif:Animatoo:master'
+
+    // Gif
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

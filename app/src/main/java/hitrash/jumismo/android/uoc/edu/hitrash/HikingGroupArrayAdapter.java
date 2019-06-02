@@ -8,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -25,6 +28,7 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Model.Group;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class HikingGroupArrayAdapter extends RecyclerView.Adapter<HikingGroupArrayAdapter.ViewHolder> {
     private List<Group> hikingGroupList;
@@ -75,6 +79,14 @@ public class HikingGroupArrayAdapter extends RecyclerView.Adapter<HikingGroupArr
             nameHikingGroup = (TextView) itemView.findViewById(R.id.nameHikingGroup);
             joinGroup = (ImageButton) itemView.findViewById(R.id.buttonJoinHikingGroup);
 
+            // Add animation
+            final Animation myAnim = AnimationUtils.loadAnimation(itemView.getContext(), R.anim.bounce);
+
+            MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+            myAnim.setInterpolator(interpolator);
+
+            joinGroup.startAnimation(myAnim);
+
             joinGroup.setOnClickListener(new ImageButton.OnClickListener(){
 
                 @Override
@@ -124,6 +136,7 @@ public class HikingGroupArrayAdapter extends RecyclerView.Adapter<HikingGroupArr
                         Intent intent = new Intent(v.getContext(), ConversationActivity.class);
                         intent.putExtra("id_group", group.getId());
                         v.getContext().startActivity(intent);
+                        Animatoo.animateSlideLeft(v.getContext());
                     }
                 }
             });

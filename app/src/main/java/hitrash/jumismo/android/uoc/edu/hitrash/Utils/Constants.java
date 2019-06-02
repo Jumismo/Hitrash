@@ -30,6 +30,11 @@ public class Constants {
     // Comments urls
     public static final String URI_NEW_COMMENT = "comment";
 
+    // Transitions types
+    public enum TransitionType {
+        Slide, Fade, Explode
+    }
+
 
 
 }

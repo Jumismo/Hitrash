@@ -44,8 +44,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="imageAsset" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Imagenes app\icons8-alpes-96.png" />
-                                      <entry key="outputName" value="ic_block" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Imagenes app\background_image.jpg" />
+                                      <entry key="outputName" value="background_image" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -120,6 +121,11 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

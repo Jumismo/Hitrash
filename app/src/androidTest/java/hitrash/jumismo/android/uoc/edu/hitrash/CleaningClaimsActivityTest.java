@@ -110,6 +110,7 @@ public class CleaningClaimsActivityTest {
                         isDisplayed()));
         appCompatImageButton.perform(click());
 
+
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.buttonCleaningClaims), withText("Cleaning Claims"),
                         childAtPosition(

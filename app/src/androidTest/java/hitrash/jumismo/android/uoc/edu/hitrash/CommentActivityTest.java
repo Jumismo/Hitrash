@@ -141,7 +141,7 @@ public class CommentActivityTest {
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                6)));
+                                5)));
         appCompatEditText6.perform(scrollTo(), replaceText("Test Message"), closeSoftKeyboard());
 
         ViewInteraction appCompatImageButton2 = onView(
@@ -150,7 +150,7 @@ public class CommentActivityTest {
                                 childAtPosition(
                                         withClassName(is("android.widget.ScrollView")),
                                         0),
-                                7)));
+                                6)));
         appCompatImageButton2.perform(scrollTo(), click());
     }
 

@@ -14,11 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -40,6 +43,7 @@ import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnCameraMoveListener {
@@ -93,6 +97,17 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
         imageUserGroupButton = (ImageButton) findViewById(R.id.imageUserGroupButton);
         imageCleaningGroupButton = (ImageButton) findViewById(R.id.imageCleaningGroupButton);
         cleaningClaimButton = (ImageButton) findViewById(R.id.cleaningClaimButton);
+
+        // Add animations
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        imageUserGroupButton.startAnimation(myAnim);
+        imageCleaningGroupButton.startAnimation(myAnim);
+        cleaningClaimButton.startAnimation(myAnim);
+
 
         // Save the DEFAULT_ZOOM of the camera of Google Maps
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -198,6 +213,8 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
                 intent.putExtra("id_hiking_trail", id_hiking_trail);
                 intent.putExtra("isCleaningClaim", false);
                 startActivity(intent);
+                Animatoo.animateSlideRight(ShowHikingTrailActivity.this);
+
             }
         });
 
@@ -208,6 +225,7 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
                 intent.putExtra("id_hiking_trail", id_hiking_trail);
                 intent.putExtra("isCleaningClaim", true);
                 startActivity(intent);
+                Animatoo.animateSlideLeft(ShowHikingTrailActivity.this);
             }
         });
     }

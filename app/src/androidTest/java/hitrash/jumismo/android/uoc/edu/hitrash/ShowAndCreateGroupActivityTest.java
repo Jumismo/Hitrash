@@ -16,6 +16,7 @@ import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
+import androidx.test.rule.GrantPermissionRule;
 import androidx.test.runner.AndroidJUnit4;
 
 import static androidx.test.espresso.Espresso.onData;
@@ -25,12 +26,14 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.pressImeActionButton;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.childAtPosition;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
@@ -42,12 +45,18 @@ public class ShowAndCreateGroupActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    @Rule
+    public GrantPermissionRule mGrantPermissionRule =
+            GrantPermissionRule.grant(
+                    "android.permission.ACCESS_FINE_LOCATION",
+                    "android.permission.ACCESS_COARSE_LOCATION");
+
     @Test
     public void showAndCreateGroupActivityTest() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.buttonLogin), withText("Login"),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 1),
@@ -56,8 +65,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.editUsername),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 2),
@@ -66,8 +75,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.editUsername),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 2),
@@ -76,8 +85,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.editUsername), withText("marta"),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 2),
@@ -86,8 +95,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.editPassword),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 4),
@@ -96,8 +105,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.editPassword), withText("marta"),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 4),
@@ -106,8 +115,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withId(R.id.confirm), withContentDescription("Login"),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 5),
@@ -116,8 +125,8 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.buttonHikingTrails), withText("Hiking Trails"),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 4),
@@ -135,19 +144,21 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatImageButton2 = onView(
                 allOf(withId(R.id.imageUserGroupButton),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
+                        childAtPosition(
+                                childAtPosition(
                                         withId(android.R.id.content),
                                         0),
-                                15),
+                                14),
                         isDisplayed()));
         appCompatImageButton2.perform(click());
 
+
+
         ViewInteraction appCompatEditText6 = onView(
                 allOf(withId(R.id.groupNameInput),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
-                                        withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
                                         0),
                                 2),
                         isDisplayed()));
@@ -155,9 +166,9 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText7 = onView(
                 allOf(withId(R.id.groupDescriptionInput),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
-                                        withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
                                         0),
                                 4),
                         isDisplayed()));
@@ -165,9 +176,9 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatEditText8 = onView(
                 allOf(withId(R.id.dateGroupEditText),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
-                                        withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
                                         0),
                                 6),
                         isDisplayed()));
@@ -184,9 +195,9 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.done_button), withText("Aceptar"),
-                        TestUtil.childAtPosition(
+                        childAtPosition(
                                 allOf(withId(R.id.ok_cancel_buttons_layout),
-                                        TestUtil.childAtPosition(
+                                        childAtPosition(
                                                 withClassName(is("android.widget.LinearLayout")),
                                                 2)),
                                 1),
@@ -204,50 +215,77 @@ public class ShowAndCreateGroupActivityTest {
 
         ViewInteraction appCompatButton4 = onView(
                 allOf(withId(R.id.done_button), withText("Aceptar"),
-                        TestUtil.childAtPosition(
+                        childAtPosition(
                                 allOf(withId(R.id.ok_cancel_buttons_layout),
-                                        TestUtil.childAtPosition(
+                                        childAtPosition(
                                                 withId(R.id.time_picker_dialog),
                                                 4)),
                                 1),
                         isDisplayed()));
         appCompatButton4.perform(click());
 
-        ViewInteraction appCompatEditText9 = onView(
-                allOf(withId(R.id.locationGroupEditText),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
-                                        withId(android.R.id.content),
+        ViewInteraction appCompatEditText10 = onView(
+                allOf(withId(R.id.textLatitud),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
                                         0),
-                                8),
-                        isDisplayed()));
-        appCompatEditText9.perform(replaceText("Seville"), closeSoftKeyboard());
+                                8)));
+        appCompatEditText10.perform(scrollTo(), replaceText("30"), closeSoftKeyboard());
+
+        ViewInteraction appCompatEditText11 = onView(
+                allOf(withId(R.id.textLongitud),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
+                                        0),
+                                10)));
+        appCompatEditText11.perform(scrollTo(), replaceText("30"), closeSoftKeyboard());
+
+        ViewInteraction appCompatImageButton3 = onView(
+                allOf(withId(R.id.addMarker),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
+                                        0),
+                                11)));
+        appCompatImageButton3.perform(scrollTo(), click());
+
+//        ViewInteraction appCompatEditText9 = onView(
+//                allOf(withId(R.id.locationGroupEditText),
+//                        TestUtil.childAtPosition(
+//                                TestUtil.childAtPosition(
+//                                        withId(android.R.id.content),
+//                                        0),
+//                                8),
+//                        isDisplayed()));
+//        appCompatEditText9.perform(replaceText("Seville"), closeSoftKeyboard());
 
         DataInteraction appCompatCheckedTextView = onData(anything())
                 .inAdapterView(allOf(withId(R.id.listViewUsers),
-                        TestUtil.childAtPosition(
+                        childAtPosition(
                                 withClassName(is("android.support.constraint.ConstraintLayout")),
-                                9)))
+                                13)))
                 .atPosition(3);
         appCompatCheckedTextView.perform(click());
 
         DataInteraction appCompatCheckedTextView2 = onData(anything())
                 .inAdapterView(allOf(withId(R.id.listViewUsers),
-                        TestUtil.childAtPosition(
+                        childAtPosition(
                                 withClassName(is("android.support.constraint.ConstraintLayout")),
-                                9)))
+                                13)))
                 .atPosition(4);
         appCompatCheckedTextView2.perform(click());
 
-        ViewInteraction appCompatImageButton3 = onView(
+        ViewInteraction appCompatImageButton4 = onView(
                 allOf(withId(R.id.acceptButtonGroup),
-                        TestUtil.childAtPosition(
-                                TestUtil.childAtPosition(
-                                        withId(android.R.id.content),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.mScrollView),
                                         0),
-                                10),
+                                14),
                         isDisplayed()));
-        appCompatImageButton3.perform(click());
+        appCompatImageButton4.perform(click());
     }
 
 

@@ -9,7 +9,7 @@ import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
 
 public class AsyncHttpUtils {
-    //private static final String BASE_URL = "http://192.168.1.141:8080/api/";
+    //private static final String BASE_URL = "http://192.168.1.142:8080/api/";
     private static final String BASE_URL = "http://sonny.titaniumsystem.es/hitrash/api/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();

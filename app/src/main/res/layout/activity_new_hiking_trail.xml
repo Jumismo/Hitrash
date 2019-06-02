@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundApp"
+
     tools:context=".NewHikingTrailActivity">
     <TextView
         android:id="@+id/nameHikingTrailLabel"
@@ -13,7 +13,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/nameLabel"
-        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +128,6 @@
         android:layout_marginTop="8dp"
         android:gravity="center_vertical"
         android:text="@string/hardnessLabel"
-        android:textSize="20dp"
         app:layout_constraintStart_toEndOf="@+id/imageHardnessHT"
         app:layout_constraintTop_toBottomOf="@+id/map" />
     <Spinner
@@ -138,6 +136,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
+        android:popupBackground="@android:color/transparent"
         android:entries="@array/hardnessType"
         android:prompt="@string/hardnessType_Prompt"
         app:layout_constraintStart_toEndOf="@+id/hardnessHikingTrailLabel"
@@ -149,7 +148,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="15dp"
         android:text="@string/provinceLabel"
-        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageHardnessHT" />
     <EditText
@@ -169,7 +167,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="@string/distanceLabel"
-        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/provinceHikingTrailEditText" />
     <EditText

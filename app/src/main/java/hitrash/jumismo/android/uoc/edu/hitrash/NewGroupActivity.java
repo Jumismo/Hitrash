@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,6 +23,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.codetroopers.betterpickers.calendardatepicker.CalendarDatePickerDialogFragment;
 import com.codetroopers.betterpickers.radialtimepicker.RadialTimePickerDialogFragment;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -51,6 +54,7 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Model.Group;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class NewGroupActivity extends AppCompatActivity implements
         CalendarDatePickerDialogFragment.OnDateSetListener,
@@ -108,6 +112,14 @@ public class NewGroupActivity extends AppCompatActivity implements
 
         acceptButtonGroup = (ImageButton) findViewById(R.id.acceptButtonGroup);
         addMarker = (ImageButton) findViewById(R.id.addMarker);
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        acceptButtonGroup.startAnimation(myAnim);
+        addMarker.startAnimation(myAnim);
 
         mScrollView = (ScrollView) findViewById(R.id.mScrollView);
 
@@ -197,6 +209,7 @@ public class NewGroupActivity extends AppCompatActivity implements
 
                             Intent intent = new Intent(v.getContext(), HikingTrailsActivity.class);
                             startActivity(intent);
+                            Animatoo.animateSlideRight(NewGroupActivity.this);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="backgroundApp">#ECEFF1</color>
+    <color name="colorPrimary">#fb8c00</color>
+    <color name="colorPrimaryDark">#c25e00</color>
+    <color name="colorAccent">#ad1457</color>
+    <color name="backgroundApp">#E0F2F1</color>
+    <color name="backgroundCardView">#98d2ce56</color>
 </resources>

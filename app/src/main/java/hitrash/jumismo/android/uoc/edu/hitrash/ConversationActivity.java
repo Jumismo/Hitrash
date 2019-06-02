@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -49,6 +51,7 @@ import hitrash.jumismo.android.uoc.edu.hitrash.Model.Group;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class ConversationActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnCameraMoveListener {
@@ -88,6 +91,15 @@ public class ConversationActivity extends AppCompatActivity implements OnMapRead
         //locationConversation = findViewById(R.id.locationConversation);
         insertCommentUserGroup = findViewById(R.id.insertCommentUserGroup);
         insertButtonCommentUserGroup = findViewById(R.id.insertButtonCommentUserGroup);
+
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        insertButtonCommentUserGroup.startAnimation(myAnim);
+
         mScrollView = (ScrollView) findViewById(R.id.scrollViewConversation);
 
         Intent intent = getIntent();

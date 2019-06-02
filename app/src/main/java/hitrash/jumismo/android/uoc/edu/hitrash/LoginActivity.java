@@ -7,10 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.ResponseHandlerInterface;
@@ -25,6 +28,7 @@ import cz.msebera.android.httpclient.HttpResponse;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.User;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.editUsername);
         password = (EditText) findViewById(R.id.editPassword);
         confirm = (ImageButton) findViewById(R.id.confirm);
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        confirm.startAnimation(myAnim);
 
         confirm.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
@@ -82,10 +93,12 @@ public class LoginActivity extends AppCompatActivity {
                                     if(userLogged.getAdmin()){
                                         Intent intent = new Intent(v.getContext(), PrincipalAdminActivity.class);
                                         startActivity(intent);
+                                        Animatoo.animateSlideUp(LoginActivity.this);
 
                                     }else {
                                         Intent intent = new Intent(v.getContext(), PrincipalUserActivity.class);
                                         startActivity(intent);
+                                        Animatoo.animateSlideDown(LoginActivity.this);
                                     }
                                 }
                                 else

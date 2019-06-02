@@ -18,12 +18,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -49,6 +52,7 @@ import cz.msebera.android.httpclient.Header;
 import hitrash.jumismo.android.uoc.edu.hitrash.Model.HikingTrail;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.AsyncHttpUtils;
 import hitrash.jumismo.android.uoc.edu.hitrash.Utils.Constants;
+import hitrash.jumismo.android.uoc.edu.hitrash.Utils.MyBounceInterpolator;
 
 public class NewHikingTrailActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleMap.OnCameraMoveListener{
@@ -102,6 +106,15 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
 
         acceptButtonHikingTrail = (ImageButton) findViewById(R.id.acceptButtonHikingTrail);
         addMarker = (ImageButton) findViewById(R.id.addMarker);
+
+        // Add animation
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+        MyBounceInterpolator interpolator = new MyBounceInterpolator(0.2, 20);
+        myAnim.setInterpolator(interpolator);
+
+        acceptButtonHikingTrail.startAnimation(myAnim);
+        addMarker.startAnimation(myAnim);
 
         imageList = new ArrayList<String>();
 
@@ -161,6 +174,7 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
                         Intent intent = new Intent(v.getContext(), HikingTrailsActivity.class);
                         intent.putExtra("id_user", id);
                         startActivity(intent);
+                        Animatoo.animateSlideRight(NewHikingTrailActivity.this);
                     }
 
                     @Override

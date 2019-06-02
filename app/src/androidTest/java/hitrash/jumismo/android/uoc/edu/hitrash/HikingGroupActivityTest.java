@@ -27,6 +27,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.childAtPosition;
+import static hitrash.jumismo.android.uoc.edu.hitrash.TestUtil.withRecyclerView;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
@@ -118,15 +119,17 @@ public class HikingGroupActivityTest {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
-        ViewInteraction appCompatImageButton2 = onView(
-                allOf(withId(R.id.buttonJoinHikingGroup),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.card_view_hiking_group),
-                                        0),
-                                2),
-                        isDisplayed()));
-        appCompatImageButton2.perform(click());
+        onView(withRecyclerView(R.id.user_group_list_recycler_view).atPositionOnView(0, R.id.buttonJoinHikingGroup)).perform(click());
+
+//        ViewInteraction appCompatImageButton2 = onView(
+//                allOf(withId(R.id.buttonJoinHikingGroup),
+//                        childAtPosition(
+//                                childAtPosition(
+//                                        withId(R.id.card_view_hiking_group),
+//                                        0),
+//                                2),
+//                        isDisplayed()));
+//        appCompatImageButton2.perform(click());
     }
 
 
