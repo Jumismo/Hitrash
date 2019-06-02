@@ -47,7 +47,6 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
     private TextView hardnessLabel;
     private TextView distanceLabel;
 
-    private ImageButton startRouteButton;
     private ImageButton cleaningClaimButton;
 
     private ImageView imageSignalize;
@@ -82,7 +81,6 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
         hardnessLabel = (TextView) findViewById(R.id.hardnessLabel);
         distanceLabel = (TextView) findViewById(R.id.distanceLabel);
 
-        startRouteButton = (ImageButton) findViewById(R.id.startRouteButton);
         cleaningClaimButton = (ImageButton) findViewById(R.id.cleaningClaimButton);
 
         imageSignalize = (ImageView) findViewById(R.id.imageSignalize);
@@ -93,7 +91,6 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
         imageUserGroupButton = (ImageButton) findViewById(R.id.imageUserGroupButton);
         imageCleaningGroupButton = (ImageButton) findViewById(R.id.imageCleaningGroupButton);
         cleaningClaimButton = (ImageButton) findViewById(R.id.cleaningClaimButton);
-        startRouteButton = (ImageButton) findViewById(R.id.startRouteButton);
 
         // Save the DEFAULT_ZOOM of the camera of Google Maps
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);
@@ -161,12 +158,6 @@ public class ShowHikingTrailActivity extends AppCompatActivity implements OnMapR
             }
         });
 
-        startRouteButton.setOnClickListener(new ImageButton.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), getText(R.string.notImplemented), Toast.LENGTH_LONG).show();
-            }
-        });
 
         cleaningClaimButton.setOnClickListener(new ImageButton.OnClickListener(){
             @Override

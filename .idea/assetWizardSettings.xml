@@ -82,8 +82,8 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="foregroundImage" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Imagenes app\icons8-play-48.png" />
-                                      <entry key="outputName" value="ic_start" />
+                                      <entry key="foregroundImage" value="C:\Users\jumismo\Documents\Universidad\MasterUOC\M0.659 - Trabajo final de máster\Material\Imagenes app\icons8-atrás-64.png" />
+                                      <entry key="outputName" value="ic_back" />
                                       <entry key="previewDensity" value="MEDIUM" />
                                     </map>
                                   </option>

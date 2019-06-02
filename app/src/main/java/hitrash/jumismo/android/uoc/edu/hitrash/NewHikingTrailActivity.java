@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -55,6 +56,8 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
     private EditText nameHikingTrailEditText;
     private EditText provinceHikingTrailEditText;
     private EditText distanceHikingTrailEditText;
+    private EditText latitudText;
+    private EditText longitudText;
 
     private CheckBox signalizeHikingTrailCheckbox;
     private CheckBox informationOfficeHikingTrailCheckbox;
@@ -62,8 +65,8 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
 
     private Spinner hardnessTypeHikingTrailSpinner;
 
-    private ImageButton imageAddButton;
     private ImageButton acceptButtonHikingTrail;
+    private ImageButton addMarker;
 
     private List<String> imageList;
     private static int RESULT_LOAD_IMAGE = 1;
@@ -88,14 +91,17 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
         provinceHikingTrailEditText = (EditText) findViewById(R.id.provinceHikingTrailEditText);
         distanceHikingTrailEditText = (EditText) findViewById(R.id.distanceHikingTrailEditText);
 
+        latitudText = (EditText) findViewById(R.id.textLatitud);
+        longitudText = (EditText) findViewById(R.id.textLongitud);
+
         signalizeHikingTrailCheckbox = (CheckBox) findViewById(R.id.signalizeHikingTrailCheckbox);
         informationOfficeHikingTrailCheckbox = (CheckBox) findViewById(R.id.informationOfficeHikingTrailCheckbox);
         guideHikingTrailCheckbox = (CheckBox) findViewById(R.id.guideHikingTrailCheckbox);
 
         hardnessTypeHikingTrailSpinner = (Spinner) findViewById(R.id.hardnessTypeHikingTrailSpinner);
 
-        imageAddButton = (ImageButton) findViewById(R.id.imageAddButton);
         acceptButtonHikingTrail = (ImageButton) findViewById(R.id.acceptButtonHikingTrail);
+        addMarker = (ImageButton) findViewById(R.id.addMarker);
 
         imageList = new ArrayList<String>();
 
@@ -165,16 +171,21 @@ public class NewHikingTrailActivity extends AppCompatActivity implements OnMapRe
             }
         });
 
-        imageAddButton.setOnClickListener(new ImageButton.OnClickListener(){
+        addMarker.setOnClickListener(new ImageButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), getText(R.string.notImplemented), Toast.LENGTH_LONG).show();
-                // TODO: Implementar la carga de imágenes
-//                Intent i = new Intent(
-//                        Intent.ACTION_PICK,
-//                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//
-//                startActivityForResult(i, RESULT_LOAD_IMAGE);
+                Double lat = Double.parseDouble(latitudText.getText().toString());
+                Double lon = Double.parseDouble(longitudText.getText().toString());
+
+                if(lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+                    LatLng point = new LatLng(lat, lon);
+
+                    mMap.clear();
+                    locationMarker = new MarkerOptions().position(point);
+                    mMap.addMarker(locationMarker);
+
+                    moveCamera(point, DEFAULT_ZOOM);
+                }
             }
         });
     }

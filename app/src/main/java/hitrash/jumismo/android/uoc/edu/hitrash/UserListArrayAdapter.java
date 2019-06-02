@@ -42,12 +42,16 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
         User user = userList.get(i);
         viewHolder.user = user;
         viewHolder.name.setText(userList.get(i).getName());
+        viewHolder.isActive.setText(userList.get(i).getIsActive()? "Actived user" : "Inactived user");
 
         if(user != null) {
-            if (user.getIsActive()) {
+            if (user.getIsActive() && user.getAdmin()) {
+                viewHolder.acceptButton.setVisibility(View.GONE);
+                viewHolder.blockButton.setVisibility(View.GONE);
+            } else if(user.getIsActive()) {
                 viewHolder.acceptButton.setVisibility(View.GONE);
                 viewHolder.blockButton.setVisibility(View.VISIBLE);
-            } else {
+            }else {
                 viewHolder.acceptButton.setVisibility(View.VISIBLE);
                 viewHolder.blockButton.setVisibility(View.GONE);
             }
@@ -62,13 +66,14 @@ public class UserListArrayAdapter extends  RecyclerView.Adapter<UserListArrayAda
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private User user;
-        private TextView name;
+        private TextView name, isActive;
         private ImageButton acceptButton, blockButton;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             name = (TextView) itemView.findViewById(R.id.textUsername);
+            isActive = (TextView) itemView.findViewById(R.id.textIsActive);
 
             acceptButton = (ImageButton) itemView.findViewById(R.id.acceptButton);
             blockButton = (ImageButton) itemView.findViewById(R.id.blockButton);

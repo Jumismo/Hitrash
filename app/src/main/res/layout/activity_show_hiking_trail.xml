@@ -14,40 +14,44 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="40dp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/startRouteButton"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:background="@mipmap/ic_start_foreground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
 
-    <TextView
-        android:id="@+id/startRouteLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/startRoute"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/startRouteButton"
-        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/startRouteButton"-->
+        <!--android:layout_width="30dp"-->
+        <!--android:layout_height="30dp"-->
+        <!--android:layout_marginStart="30dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@mipmap/ic_start_foreground"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/map" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/startRouteLabel"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:text="@string/startRoute"-->
+        <!--android:textSize="20dp"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/startRouteButton"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/map" />-->
 
     <ImageButton
         android:id="@+id/cleaningClaimButton"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@mipmap/ic_cleaning_claim_foreground"
-        app:layout_constraintStart_toEndOf="@+id/startRouteLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/map" />
 
     <TextView
@@ -69,7 +73,7 @@
         android:layout_marginTop="8dp"
         android:src="@mipmap/ic_location_foreground"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startRouteButton" />
+        app:layout_constraintTop_toBottomOf="@+id/cleaningClaimButton" />
 
     <TextView
         android:id="@+id/provinceLabel"
@@ -89,7 +93,7 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_hardness"
         app:layout_constraintStart_toEndOf="@+id/provinceLabel"
-        app:layout_constraintTop_toBottomOf="@+id/startRouteButton" />
+        app:layout_constraintTop_toBottomOf="@+id/cleaningClaimButton" />
 
     <TextView
         android:id="@+id/hardnessLabel"
@@ -179,26 +183,29 @@
 
     <ImageButton
         android:id="@+id/imageUserGroupButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@mipmap/ic_group_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSignalize" />
 
     <ImageButton
         android:id="@+id/imageCleaningGroupButton"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@mipmap/ic_clean_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageSignalize" />
 
 
 

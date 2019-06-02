@@ -32,6 +32,7 @@ public class HikingTrailsActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager lManager;
 
     private ImageButton newHikingTrailButton;
+    private ImageButton backHikingTrailButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class HikingTrailsActivity extends AppCompatActivity {
         hikingTrailsList = new ArrayList<HikingTrail>();
 
         newHikingTrailButton = (ImageButton) findViewById(R.id.newHikingTrailButton);
+        backHikingTrailButton = (ImageButton) findViewById(R.id.backHikingTrailButton);
 
         recycler = (RecyclerView) findViewById(R.id.hiking_trail_list_recycler_view);
         recycler.setHasFixedSize(true);
@@ -84,6 +86,15 @@ public class HikingTrailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), NewHikingTrailActivity.class);
+                intent.putExtra("id_user", id);
+                startActivity(intent);
+            }
+        });
+
+        backHikingTrailButton.setOnClickListener(new ImageButton.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), PrincipalUserActivity.class);
                 intent.putExtra("id_user", id);
                 startActivity(intent);
             }

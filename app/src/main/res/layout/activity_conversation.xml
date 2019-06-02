@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundApp"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:id="@+id/scrollViewConversation">
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -18,7 +19,7 @@
 
         <TextView
             android:id="@+id/nameConversation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -32,43 +33,60 @@
             android:id="@+id/imageCalendarConversation"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="30dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
             android:src="@mipmap/ic_calendar_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameConversation" />
 
         <TextView
             android:id="@+id/dateConversation"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_width="281dp"
+            android:layout_height="40dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageCalendarConversation"
             app:layout_constraintTop_toBottomOf="@+id/nameConversation" />
 
-        <ImageView
-            android:id="@+id/imageLocationConversation"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:src="@mipmap/ic_location_foreground"
-            app:layout_constraintStart_toEndOf="@+id/dateConversation"
-            app:layout_constraintTop_toBottomOf="@+id/nameConversation" />
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/dateConversation"
+            tools:context=".ConversationActivity" />
 
-        <TextView
-            android:id="@+id/locationConversation"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            app:layout_constraintStart_toEndOf="@+id/imageLocationConversation"
-            app:layout_constraintTop_toBottomOf="@+id/nameConversation" />
+        <!--<ImageView-->
+            <!--android:id="@+id/imageLocationConversation"-->
+            <!--android:layout_width="30dp"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:src="@mipmap/ic_location_foreground"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/dateConversation"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/nameConversation" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/locationConversation"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="30dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:gravity="center"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/imageLocationConversation"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/nameConversation" />-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/conversation_recycler_view"
@@ -80,7 +98,7 @@
             android:scrollbars="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dateConversation" />
+            app:layout_constraintTop_toBottomOf="@+id/map" />
 
         <EditText
             android:id="@+id/insertCommentUserGroup"

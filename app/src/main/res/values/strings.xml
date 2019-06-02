@@ -52,4 +52,7 @@
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBHvXkAEH2ay2bkevQt01Z0bqjT5dXkFcw</string>
     <string name="notImplemented">This functionality is not implemented</string>
     <string name="restoreClaims">The claims of this hiking trails have been restored</string>
+    <string name="latitud">Lat:</string>
+    <string name="longitud">Long:</string>
+    <string name="km">km</string>
 </resources>

@@ -1,131 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundApp"
-    tools:context=".NewGroupActivity">
+    android:id="@+id/mScrollView"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/titleGroupLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="25dp"
-        android:text="@string/newGroupTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/groupNameLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/groupNameLabel"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleGroupLabel" />
-
-    <EditText
-        android:id="@+id/groupNameInput"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/groupNameLabel"
-        app:layout_constraintTop_toBottomOf="@+id/titleGroupLabel" />
-
-    <TextView
-        android:id="@+id/groupDescriptionLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/groupDescriptionLabel"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupNameInput" />
-
-    <EditText
-        android:id="@+id/groupDescriptionInput"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionLabel" />
+        android:layout_height="match_parent"
+        android:background="@color/backgroundApp"
+        tools:context=".NewGroupActivity">
 
-    <ImageView
-        android:id="@+id/imageCalendarGroup"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:src="@mipmap/ic_calendar_foreground"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
+        <TextView
+            android:id="@+id/titleGroupLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="25dp"
+            android:text="@string/newGroupTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/dateGroupEditText"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:focusable="false"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageCalendarGroup"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
+        <TextView
+            android:id="@+id/groupNameLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/groupNameLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleGroupLabel" />
 
-    <ImageView
-        android:id="@+id/imageProvinceGroup"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="15dp"
-        android:src="@mipmap/ic_location_foreground"
-        app:layout_constraintStart_toEndOf="@+id/dateGroupEditText"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
+        <EditText
+            android:id="@+id/groupNameInput"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/groupNameLabel"
+            app:layout_constraintTop_toBottomOf="@+id/titleGroupLabel" />
 
-    <EditText
-        android:id="@+id/locationGroupEditText"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/imageProvinceGroup"
-        app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
+        <TextView
+            android:id="@+id/groupDescriptionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/groupDescriptionLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupNameInput" />
 
-    <ListView
-        android:id="@+id/listViewUsers"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:choiceMode="multipleChoice"
-        android:clickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+        <EditText
+            android:id="@+id/groupDescriptionInput"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupDescriptionLabel" />
 
-    <ImageButton
-        android:id="@+id/acceptButtonGroup"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@mipmap/ic_confirm_color_foreground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listViewUsers" />
+        <ImageView
+            android:id="@+id/imageCalendarGroup"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:src="@mipmap/ic_calendar_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/dateGroupEditText"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageCalendarGroup"
+            app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageProvinceGroup"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:src="@mipmap/ic_location_foreground"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/dateGroupEditText"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/locationGroupEditText"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/imageProvinceGroup"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/groupDescriptionInput" />-->
+
+        <TextView
+            android:id="@+id/labelLatitud"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/latitud"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+
+        <EditText
+            android:id="@+id/textLatitud"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/labelLatitud"
+            app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+
+        <TextView
+            android:id="@+id/labelLongitud"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/longitud"
+            app:layout_constraintStart_toEndOf="@+id/textLatitud"
+            app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+
+        <EditText
+            android:id="@+id/textLongitud"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toEndOf="@+id/labelLongitud"
+            app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+
+        <ImageButton
+            android:id="@+id/addMarker"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@mipmap/ic_location_foreground"
+            app:layout_constraintStart_toEndOf="@+id/textLongitud"
+            app:layout_constraintTop_toBottomOf="@+id/dateGroupEditText" />
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toBottomOf="@+id/textLongitud"
+            tools:context=".NewGroupActivity" />
+
+        <ListView
+            android:id="@+id/listViewUsers"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:choiceMode="multipleChoice"
+            android:clickable="true"
+            app:layout_constraintBottom_toTopOf="@+id/acceptButtonGroup"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/map" />
+
+        <ImageButton
+            android:id="@+id/acceptButtonGroup"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@mipmap/ic_confirm_color_foreground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
